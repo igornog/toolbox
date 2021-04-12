@@ -1,14 +1,10 @@
-import './App.css';
-import Login from './components/Login';
-import Logout from './components/Logout';
+import './App.scss';
+import Login from './views/Login';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Login />
-        <Logout />
-      </header>
+      <Login />
     </div>
   );
 }

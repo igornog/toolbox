@@ -1,6 +1,8 @@
 import React from 'react';
 import { useGoogleLogin } from 'react-google-login';
 
+import './LogBtn.scss';
+
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
 
@@ -10,6 +12,7 @@ const clientId =
 function LoginHooks() {
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj);
+    alert('Successfully logged in!')
     refreshTokenSetup(res);
   };
 
@@ -23,8 +26,6 @@ function LoginHooks() {
     clientId,
     isSignedIn: true,
     accessType: 'offline',
-    // responseType: 'code',
-    // prompt: 'consent',
   });
 
   return (

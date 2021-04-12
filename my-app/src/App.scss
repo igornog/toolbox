@@ -1,0 +1,32 @@
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  .login-section {
+    width: 30%;
+    padding: 50px;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2 {
+      color: #282c34;
+      display: flex;
+      span {
+        display: flex;
+        margin: 0 15px;
+        img {
+          width: 44px;
+        }
+      }
+    }
+  }
+}
+
