@@ -1,3 +1,3 @@
 # hiring-support
 
-## toolbox to help the sellers with tech support tickets
+## toolbox to help Sami sellers with tech support tickets
