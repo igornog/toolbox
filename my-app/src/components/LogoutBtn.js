@@ -10,6 +10,7 @@ function LogoutHooks() {
   const onLogoutSuccess = (res) => {
     console.log('Logged out Success');
     alert('Successfully logged out!')
+    window.location.reload();
   };
 
   const onFailure = () => {
@@ -22,13 +23,12 @@ function LogoutHooks() {
     onFailure,
   });
 
-  return (
+  return <>
     <button onClick={signOut} className="button">
       <img src="icons/google.svg" alt="google login" className="icon"></img>
-
       <span className="buttonText">Sign out</span>
     </button>
-  );
+  </>
 }
 
 export default LogoutHooks;

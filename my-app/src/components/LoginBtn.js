@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react"
 import { useGoogleLogin } from 'react-google-login';
+import LogoutBtn from '../components/LogoutBtn';
 
 import './LogBtn.scss';
 
@@ -10,8 +11,11 @@ const clientId =
   '318274943652-5svcg57nbr403ica2mq8pv2lqo883ep7.apps.googleusercontent.com';
 
 function LoginHooks() {
+  const [logged,setLog] = useState(false)
+
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj);
+    setLog(true)
     alert('Successfully logged in!')
     refreshTokenSetup(res);
   };
@@ -28,13 +32,15 @@ function LoginHooks() {
     accessType: 'offline',
   });
 
-  return (
+  return <> 
+    {!logged ?
     <button onClick={signIn} className="button">
       <img src="icons/google.svg" alt="google login" className="icon"></img>
-
       <span className="buttonText">Sign in with Google</span>
-    </button>
-  );
+    </button> :
+     <LogoutBtn />
+    }
+  </>
 }
 
 export default LoginHooks;
