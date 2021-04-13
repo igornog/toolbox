@@ -43,7 +43,7 @@ function LoginHooks() {
      <LogoutBtn />
     }
     {loginFailed ?
-    <p>E-mail não autorizado.</p> : ''
+    <p className='login-failed-txt' >Não foi possível fazer login com esta conta</p> : ''
     }
   </>
 }

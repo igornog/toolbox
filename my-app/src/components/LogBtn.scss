@@ -3,7 +3,7 @@
     display: block;
     font-size: 18px;
     box-sizing: content-box;
-    margin: 20px auto;
+    margin: 20px auto 12px;
     width: 70%;
     outline: -webkit-focus-ring-color auto 1px;
     padding: 15px 20px;
@@ -35,4 +35,14 @@
     left: 30px;
     top: 12px;
     align-items: center;
+    @media only screen and (max-width: 1024px) {
+      left: 15px;
+    }
+  }
+
+  .login-failed-txt {
+    color: red !important;
+    font-weight: bold;
+    margin-top: 0;
+    font-size: 12px;
   }

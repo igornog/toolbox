@@ -30,3 +30,20 @@
   }
 }
 
+@media only screen and (max-width: 1024px) {
+  .App {
+    .login-section {
+      width: 90%;
+      padding: 0 0 20px;
+      h2, p {
+        align-items: center;
+        span {
+          img {
+            width: 44px;
+          }
+        }
+      }
+    }
+  }
+}
+
