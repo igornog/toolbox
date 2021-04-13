@@ -16,7 +16,6 @@ function LoginHooks(params) {
   const onSuccess = (res) => {
     console.log("Login Success: currentUser:", res.profileObj);
     params.setLog(true);
-    alert("Successfully logged in!");
     refreshTokenSetup(res);
   };
 
