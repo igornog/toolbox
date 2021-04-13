@@ -1,20 +1,20 @@
-import React from 'react';
-import { useGoogleLogout } from 'react-google-login';
+import React from "react";
+import { useGoogleLogout } from "react-google-login";
 
-import './LogBtn.scss';
+import "./LogBtn.scss";
 
 const clientId =
-  '318274943652-5svcg57nbr403ica2mq8pv2lqo883ep7.apps.googleusercontent.com';
+  "318274943652-5svcg57nbr403ica2mq8pv2lqo883ep7.apps.googleusercontent.com";
 
 function LogoutHooks() {
   const onLogoutSuccess = (res) => {
-    console.log('Logged out Success');
-    alert('Successfully logged out!')
+    console.log("Logged out Success");
+    alert("Successfully logged out!");
     window.location.reload();
   };
 
   const onFailure = () => {
-    console.log('Handle failure cases');
+    console.log("Handle failure cases");
   };
 
   const { signOut } = useGoogleLogout({
@@ -23,12 +23,14 @@ function LogoutHooks() {
     onFailure,
   });
 
-  return <>
-    <button onClick={signOut} className="button">
-      <img src="icons/google.svg" alt="google login" className="icon"></img>
-      <span className="buttonText">Sign out</span>
-    </button>
-  </>
+  return (
+    <>
+      <button onClick={signOut} className="button">
+        <img src="icons/google.svg" alt="google login" className="icon"></img>
+        <span className="buttonText">Sign out</span>
+      </button>
+    </>
+  );
 }
 
 export default LogoutHooks;
