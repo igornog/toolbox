@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useGoogleLogin } from 'react-google-login';
 import LogoutBtn from '../components/LogoutBtn';
 
@@ -12,6 +12,7 @@ const clientId =
 
 function LoginHooks() {
   const [logged,setLog] = useState(false)
+  const [loginFailed,setLoginFailed] = useState(false)
 
   const onSuccess = (res) => {
     console.log('Login Success: currentUser:', res.profileObj);
@@ -21,6 +22,7 @@ function LoginHooks() {
   };
 
   const onFailure = (res) => {
+    setLoginFailed(true)
     console.log('Login failed: res:', res);
   };
 
@@ -39,6 +41,9 @@ function LoginHooks() {
       <span className="buttonText">Sign in with Google</span>
     </button> :
      <LogoutBtn />
+    }
+    {loginFailed ?
+    <p>E-mail não autorizado.</p> : ''
     }
   </>
 }
