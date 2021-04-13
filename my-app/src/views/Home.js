@@ -1,23 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.scss";
 
-const Home = () => (
-    <section className="home-section">
-        <nav>
-            <div>MENU</div>
-            <div>PERFIL</div>
-        </nav>
-        <div className='search-box'>
-            <h2>Hiring Toolbox</h2>
-            <input></input>
-            <select>
-                <option>CNPJ</option>
-                <option>CPF</option>
-                <option>Carteirinha</option>
-                <option>Email</option>
-            </select>
-        </div>
-    </section>
-);
+import menuIcon from '../assets/menuIcon.png'
+
+function Home() {
+    const [MenuOpened, setMenuOpened] = useState(false);
+    const [ProfileOpened, setProfileOpened] = useState(false);
+
+    const closeMenus = () => {
+        setMenuOpened(false)
+        setProfileOpened(false)
+    }
+
+    return <>
+        <section className="home-section">
+            <nav>
+            <div>
+                <div className='menu' onClick={() => setMenuOpened(true)}>
+                    <img src={menuIcon} alt="menu-icon"></img>
+                </div>
+                <div className={MenuOpened === true ? 'menu-opened':'menu-closed'}></div>
+            </div>
+
+            <div>
+                <div className='profile' onClick={() => setProfileOpened(true)}>PERFIL</div>
+                <div className={ProfileOpened === true ? 'profile-opened':'profile-closed'}></div>
+            </div>
+            </nav>
+            <div className='search-box' onClick={closeMenus}>
+                <h2>Hiring Toolbox</h2>
+                <div>
+                    <input></input>
+                    <select>
+                        <option>CNPJ</option>
+                        <option>CPF</option>
+                        <option>Carteirinha</option>
+                        <option>Email</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+    </>
+};
 
 export default Home;

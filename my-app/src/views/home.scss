@@ -11,21 +11,58 @@
         display: flex;
         justify-content: space-between;
         width: 100vw;
-        div:hover {
+        .menu, .profile{
+            padding: 20px;
             cursor: pointer;
+            img {
+                width: 40px;
+            }
+        }
+        .menu-closed, .profile-closed {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-100px);
+            transition: .3s all ease-in-out;
+        }
+        .profile-closed {
+            transform: translateX(100px);
+        }
+        .menu-opened, .profile-opened {
+            width: 300px;
+            opacity: 1;
+            pointer-events: initial;
+            transform: translateX(0px);
+            height: 100vh;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            transition: .3s all ease-in-out;
+        }
+        .profile-opened {
+            right: 0;
         }
     }
     .search-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: calc(100% - 600px);
+        height: 100vh;
         input, select {
             border-radius: 4px;
             border: none;
             outline: none;
             height: 30px;
             padding: 0;
-            margin-right: 15px;
+            margin: 0px 7px;
         }
         input {
             padding: 0 10px;
+        }
+        div {
+            display: flex;
+            justify-content: center;
         }
     }
 }
