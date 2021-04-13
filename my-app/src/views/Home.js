@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./home.scss";
-
+import toolboxIcon from '../assets/toolbox.png'
 import menuIcon from '../assets/menuIcon.png'
 
 function Home() {
@@ -28,7 +28,7 @@ function Home() {
             </div>
             </nav>
             <div className='search-box' onClick={closeMenus}>
-                <h2>Hiring Toolbox</h2>
+                <h2>Hiring Toolbox <span><img src={toolboxIcon} alt="toolbox-icon"></img></span></h2>
                 <div>
                     <input></input>
                     <select>
