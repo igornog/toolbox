@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./home.scss";
+import LogoutBtn from '../components/LogoutBtn';
 import toolboxIcon from '../assets/toolbox.png'
 import menuIcon from '../assets/menuIcon.png'
 
@@ -24,7 +25,11 @@ function Home() {
 
             <div>
                 <div className='profile' onClick={() => setProfileOpened(true)}>PERFIL</div>
-                <div className={ProfileOpened === true ? 'profile-opened':'profile-closed'}></div>
+                <div className={ProfileOpened === true ? 'profile-opened':'profile-closed'}>
+                    <ul>
+                        <li><LogoutBtn /></li>
+                    </ul>
+                </div>
             </div>
             </nav>
             <div className='search-box' onClick={closeMenus}>

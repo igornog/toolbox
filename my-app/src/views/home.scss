@@ -24,10 +24,12 @@
       opacity: 0;
       pointer-events: none;
       transform: translateX(-100px);
-      transition: 0.3s all ease-in-out;
     }
     .profile-closed {
       transform: translateX(100px);
+      ul {
+          display: none;
+      }
     }
     .menu-opened,
     .profile-opened {
@@ -43,6 +45,16 @@
     }
     .profile-opened {
       right: 0;
+      ul {
+          color: black;
+          display: block;
+          list-style-type: none;
+          li {
+             &:hover {
+                 cursor: pointer;
+             } 
+          }
+      }
     }
   }
   .search-box {

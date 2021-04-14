@@ -9,7 +9,6 @@ const clientId =
 function LogoutHooks() {
   const onLogoutSuccess = (res) => {
     console.log("Logged out Success");
-    alert("Successfully logged out!");
     window.location.reload();
   };
 
@@ -25,10 +24,11 @@ function LogoutHooks() {
 
   return (
     <>
-      <button onClick={signOut} className="button">
+      <p onClick={signOut}> SAIR </p>
+      {/* <button onClick={signOut} className="button">
         <img src="icons/google.svg" alt="google login" className="icon"></img>
         <span className="buttonText">Sign out</span>
-      </button>
+      </button> */}
     </>
   );
 }
