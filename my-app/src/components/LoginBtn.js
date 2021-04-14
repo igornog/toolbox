@@ -15,7 +15,6 @@ function LoginHooks(params) {
   const [loginFailed, setLoginFailed] = useState(false);
 
   const onSuccess = (res) => {
-    console.log(res.profileObj.email)
     if(USERS_LIST.includes(res.profileObj.email)){
       console.log("Login Success: currentUser:", res.profileObj);
       params.setLog(true);

@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import InputMask from 'react-input-mask';
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
-import NavBar from '../components/NavBar'
+import NavBar from "../components/NavBar";
 
 function Home() {
+  const [inputMask, setInputMask] = useState(false);
+
+  const changeMask = (e) => {
+    let docChoosen = e.target.value;
+    switch (docChoosen) {
+      case "cnpj":
+        setInputMask('99.999.999/9999-99');
+        break;
+      case "cpf":
+        setInputMask('999.999.999-99');
+        break;
+      case "id":
+        setInputMask('99999999999');
+        break;
+      case "email":
+        setInputMask('');
+        break;
+      default:
+    }
+  };
+
   return (
     <>
       <section className="home-section">
         <NavBar />
-        <div className="search-box" >
+        <div className="search-box">
           <h2>
             Hiring Toolbox{" "}
             <span>
@@ -16,12 +38,12 @@ function Home() {
             </span>
           </h2>
           <div>
-            <input></input>
-            <select>
-              <option>CNPJ</option>
-              <option>CPF</option>
-              <option>Carteirinha</option>
-              <option>Email</option>
+            <InputMask mask={inputMask}></InputMask>
+            <select onChange={changeMask}>
+              <option value="cnpj">CNPJ</option>
+              <option value="cpf">CPF</option>
+              <option value="id">Carteirinha</option>
+              <option value="email">Email</option>
             </select>
           </div>
           <button>
