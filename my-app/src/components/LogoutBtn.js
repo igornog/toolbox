@@ -24,7 +24,7 @@ function LogoutHooks() {
 
   return (
     <>
-      <p onClick={signOut}> SAIR </p>
+      <p onClick={signOut}>sair</p>
       {/* <button onClick={signOut} className="button">
         <img src="icons/google.svg" alt="google login" className="icon"></img>
         <span className="buttonText">Sign out</span>

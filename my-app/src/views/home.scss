@@ -11,9 +11,11 @@
     display: flex;
     justify-content: space-between;
     width: 100vw;
+    z-index: 1;
     .menu,
     .profile {
       padding: 20px 40px;
+      color: #f75c57;
       font-size: 30px;
       cursor: pointer;
       @media only screen and (max-width: 1024px) {
@@ -32,7 +34,7 @@
     .profile-closed {
       transform: translateX(100px);
       ul {
-          display: none;
+        display: none;
       }
     }
     .menu-opened,
@@ -46,22 +48,37 @@
       position: absolute;
       top: 0;
       transition: 0.3s all ease-in-out;
+      span {
+        width: 40px;
+        cursor: pointer;
+        font-size: 40px;
+        color: #000;
+        position: absolute;
+        top: 0;
+        right: 0px;
+        padding: 10px;
+        text-align: center;
+      }
+      ul {
+        color: black;
+        display: block;
+        list-style-type: none;
+        padding: 50px 40px 0;
+        li {
+          p {
+            font-size: 30px;
+            text-transform: capitalize;
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
     .profile-opened {
       right: 0;
-      ul {
-          color: black;
-          display: block;
-          list-style-type: none;
-          padding: 0 40px 0;
-          li {
-            p {
-                font-size: 30px;
-            }
-             &:hover {
-                cursor: pointer;
-             } 
-          }
+      span {
+        left: 0;
       }
     }
   }
@@ -73,7 +90,7 @@
     width: calc(100% - 600px);
     height: 100vh;
     @media only screen and (max-width: 1024px) {
-        width: 100%;
+      width: 100%;
     }
     h2 {
       display: flex;
@@ -112,8 +129,8 @@
       }
     }
     select {
-        background-color: #fff;
-        padding-left: 30px;
+      background-color: #fff;
+      padding: 0 15px;
     }
     div {
       display: flex;
@@ -126,19 +143,32 @@
       }
     }
     button {
-        height: 50px;
-        width: 35%;
-        margin: 20px 0 0;
-        background-color: #f75c57;
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        font-weight: bold;
-        font-size: 18px;
-        font-family: 'Abel', sans-serif;
-        p {
-            margin: 0;
-        }
+      height: 50px;
+      width: 35%;
+      cursor: pointer;
+      margin: 20px 0 0;
+      background-color: #f75c57;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: "Abel", sans-serif;
+      -webkit-transform: translateY(-0px) !important;
+      transform: translateY(-0px) !important;
+      transition: 0.4s ease 0s;
+      -webkit-transform: 0.4s ease 0s;
+      &:hover {
+        -webkit-transform: translateY(-4px) !important;
+        transform: translateY(-4px) !important;
+      }
+      p {
+        margin: 0;
+        padding-bottom: 3px;
+      }
+      @media only screen and (max-width: 1024px) {
+        margin: 50px 0 0;
+      }
     }
   }
 }

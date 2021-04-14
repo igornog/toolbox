@@ -1,49 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./home.scss";
-import LogoutBtn from "../components/LogoutBtn";
 import toolboxIcon from "../assets/toolbox.png";
-import menuIcon from "../assets/menuIcon.png";
+import NavBar from '../components/NavBar'
 
 function Home() {
-  const [MenuOpened, setMenuOpened] = useState(false);
-  const [ProfileOpened, setProfileOpened] = useState(false);
-
-  const closeMenus = () => {
-    setMenuOpened(false);
-    setProfileOpened(false);
-  };
-
   return (
     <>
       <section className="home-section">
-        <nav>
-          <div>
-            <div className="menu" onClick={() => setMenuOpened(true)}>
-              <img src={menuIcon} alt="menu-icon"></img>
-            </div>
-            <div
-              className={MenuOpened === true ? "menu-opened" : "menu-closed"}
-            ></div>
-          </div>
-
-          <div>
-            <div className="profile" onClick={() => setProfileOpened(true)}>
-              PERFIL
-            </div>
-            <div
-              className={
-                ProfileOpened === true ? "profile-opened" : "profile-closed"
-              }
-            >
-              <ul>
-                <li>
-                  <LogoutBtn />
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div className="search-box" onClick={closeMenus}>
+        <NavBar />
+        <div className="search-box" >
           <h2>
             Hiring Toolbox{" "}
             <span>
