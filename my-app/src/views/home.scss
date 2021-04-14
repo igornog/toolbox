@@ -33,6 +33,7 @@
     }
     .profile-closed {
       transform: translateX(100px);
+      display: none;
       ul {
         display: none;
       }
@@ -40,6 +41,7 @@
     .menu-opened,
     .profile-opened {
       width: 300px;
+      display: block;
       opacity: 1;
       pointer-events: initial;
       transform: translateX(0px);
