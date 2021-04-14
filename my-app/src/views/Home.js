@@ -3,10 +3,12 @@ import InputMask from "react-input-mask";
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
 import NavBar from "../components/NavBar";
+import SearchResult from "../components/SearchResult";
 import Button from "../atoms/button"
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
+  const [searchOn, setsearchOn] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -29,9 +31,9 @@ function Home() {
 
   return (
     <>
-      <section className="home-section">
+      <section className={`home-section ${searchOn === true ? 'search-on' : ''}`}>
         <NavBar />
-        <div className="search-box">
+        <div className="search-box" >
           <h2>
             Hiring Toolbox{" "}
             <span>
@@ -47,10 +49,11 @@ function Home() {
               <option value="id">Carteirinha</option>
             </select>
           </div>
-          <Button>
+          <Button className="" onClick={() => setsearchOn(true)}>
             <p>PROCURAR</p>
           </Button>
         </div>
+        <SearchResult />
       </section>
     </>
   );
