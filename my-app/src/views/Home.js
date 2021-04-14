@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputMask from 'react-input-mask';
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
@@ -40,10 +40,10 @@ function Home() {
           <div>
             <InputMask mask={inputMask}></InputMask>
             <select onChange={changeMask}>
+            <option value="email">Email</option>
               <option value="cnpj">CNPJ</option>
               <option value="cpf">CPF</option>
               <option value="id">Carteirinha</option>
-              <option value="email">Email</option>
             </select>
           </div>
           <button>
