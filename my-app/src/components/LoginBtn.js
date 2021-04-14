@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGoogleLogin } from "react-google-login";
 import LogoutBtn from "../components/LogoutBtn";
-import USERS_LIST from "../constants/userLists";
+import USERS_LIST from "../constants/userList";
 
 import "./LogBtn.scss";
 
@@ -18,6 +18,8 @@ function LoginHooks(params) {
     if (USERS_LIST.includes(res.profileObj.email)) {
       console.log("Login Success: currentUser:", res.profileObj);
       params.setLog(true);
+    } else {
+      setLoginFailed(true);
     }
     refreshTokenSetup(res);
   };

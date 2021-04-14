@@ -3,6 +3,7 @@ import InputMask from "react-input-mask";
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
 import NavBar from "../components/NavBar";
+import Button from "../atoms/button"
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
@@ -46,9 +47,9 @@ function Home() {
               <option value="id">Carteirinha</option>
             </select>
           </div>
-          <button>
+          <Button>
             <p>PROCURAR</p>
-          </button>
+          </Button>
         </div>
       </section>
     </>
