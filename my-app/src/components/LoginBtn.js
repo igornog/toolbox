@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGoogleLogin } from "react-google-login";
 import LogoutBtn from "../components/LogoutBtn";
-import USERS_LIST from '../constants/userLists'
+import USERS_LIST from "../constants/userLists";
 
 import "./LogBtn.scss";
 
@@ -15,7 +15,7 @@ function LoginHooks(params) {
   const [loginFailed, setLoginFailed] = useState(false);
 
   const onSuccess = (res) => {
-    if(USERS_LIST.includes(res.profileObj.email)){
+    if (USERS_LIST.includes(res.profileObj.email)) {
       console.log("Login Success: currentUser:", res.profileObj);
       params.setLog(true);
     }

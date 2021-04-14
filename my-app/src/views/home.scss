@@ -162,6 +162,9 @@
         -webkit-transform: translateY(-4px) !important;
         transform: translateY(-4px) !important;
       }
+      &:focus {
+        outline: none;
+      }
       p {
         margin: 0;
         padding-bottom: 3px;
