@@ -82,6 +82,9 @@
         right: 0px;
         padding: 10px;
         text-align: center;
+        &:hover {
+          color: #f75c57;
+        }
       }
       ul {
         color: black;
@@ -95,6 +98,7 @@
           }
           &:hover {
             cursor: pointer;
+            color: #f75c57;
           }
         }
       }
@@ -206,7 +210,7 @@
     .upload-btn {
       bottom: 0;
       position: absolute;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
       width: 25%;
       &.hide{
         display: none;

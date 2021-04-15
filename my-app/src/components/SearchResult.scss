@@ -55,4 +55,13 @@
         justify-content: flex-start;
     }
   }
+  &-company-content{
+    .btn-warning {
+      width: 50%;
+      height: 20px;
+      margin: 0;
+      font-size: 12px;
+      background-color: red;
+    }
+  }
 }

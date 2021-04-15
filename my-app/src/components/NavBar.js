@@ -43,6 +43,8 @@ function NavBar(params) {
             <ul>
               <li onClick={closeSearch}><p>home</p></li>  
               <li onClick={openUploadModal}><p>upload de membros</p></li>
+              <li onClick={openUploadModal}><p>update forçado do DW para contrato</p></li>
+              <li onClick={openUploadModal}><p>histórico de modificações</p></li>
             </ul>
           </div>
         </div>
