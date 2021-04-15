@@ -56,7 +56,7 @@ function Home() {
           </Button>
         </div>
         <div className={`edit-modal ${editModalOn === true ? 'edit-modal-on' : ''}`}>
-          <EditModal />
+          <EditModal seteditModalOn={seteditModalOn}/>
         </div>
         <SearchResult seteditModalOn={seteditModalOn}/>
       </section>
