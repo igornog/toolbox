@@ -41,6 +41,10 @@ function SearchResult(params) {
               Situação Cadastral<span>ATIVA</span>
             </p>
           </div>
+          <div className="hiring-step">
+            <p>Step atual no fluxo de contratação<span>DOCUMENTOS</span></p>
+            <Button className="btn-atention">retornar step no fluxo de contratação</Button>
+          </div>
         </div>
         <div className="search-result-beneficiaries-content">
           <table>
