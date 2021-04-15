@@ -1,0 +1,41 @@
+.edit-modal {
+  display: none;
+  &-on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    z-index: 999;
+    .modal-background {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      background-color: #282c34;
+    }
+    section {
+      background-color: #fff;
+      z-index: 9;
+      width: 95vw;
+      height: 95vh;
+      top: 0;
+      border-radius: 4px;
+      div {
+        position: relative;
+        span {
+          position: absolute;
+          color: #fff;
+          cursor: pointer;
+          top: 0;
+          padding: 15px 30px 0 0;
+          right: 0;
+          p {
+            color: black;
+            font-size: 30px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,16 @@
 import React from "react";
 import "./SearchResult.scss";
 
-function SearchResult() {
+function SearchResult(params) {
+
+  const openEditModal = () => {
+    params.setEditModalOn(true)
+  }
+
+  const openDeleteConfirmationModal = () => {
+    params.setDeleteConfirmationModalOn(true)
+  }
+
   return (
     <>
       <section className="search-result">
@@ -55,8 +64,8 @@ function SearchResult() {
                 <td>Cartão de crédito</td>
                 <td>01/01/2021</td>
                 <td>
-                  <p>editar</p>
-                  <p>apagar</p>
+                  <p onClick={openEditModal}>editar</p>
+                  <p onClick={openDeleteConfirmationModal}>apagar</p>
                 </td>
               </tr>
             </tbody>
