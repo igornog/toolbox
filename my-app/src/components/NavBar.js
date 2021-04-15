@@ -25,6 +25,10 @@ function NavBar(params) {
     params.setsearchOn(false);
   };
 
+  const openUploadModal = () => {
+    params.setUploadModalOn(true);
+  };
+
   return (
     <>
       <nav>
@@ -35,8 +39,8 @@ function NavBar(params) {
           <div className={MenuOpened === true ? "menu-opened" : "menu-closed"}>
             <span onClick={closeMenus}>x</span>
             <ul>
-              <li onClick={closeSearch}><p>home</p></li>
-              <li><p>atualizar contratos</p></li>
+              <li onClick={closeSearch}><p>home</p></li>  
+              <li onClick={openUploadModal}><p>upload de membros</p></li>
             </ul>
           </div>
         </div>

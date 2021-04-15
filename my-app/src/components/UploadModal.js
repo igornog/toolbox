@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../atoms/button";
 import "./uploadModal.scss";
 
 function UploadModal(params) {
@@ -12,7 +13,10 @@ function UploadModal(params) {
       <section>
         <div>
           <span onClick={closeUploadModal}><p>X</p></span>
-          Editar
+          <div className="content">
+            <Button>Baixar planilha</Button>
+            <Button>Subir planilha</Button>
+          </div>
         </div>
       </section>
     </>

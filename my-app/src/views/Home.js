@@ -42,7 +42,7 @@ function Home() {
       <section
         className={`home-section ${searchOn === true ? "search-on" : ""}`}
       >
-        <NavBar setsearchOn={setSearchOn} />
+        <NavBar setsearchOn={setSearchOn} setUploadModalOn={setUploadModalOn}/>
         <div className="search-box">
           <h2 onClick={() => setSearchOn(false)}>
             Hiring Toolbox{" "}
@@ -62,8 +62,10 @@ function Home() {
           <Button className="" onClick={() => setSearchOn(true)}>
             <p>PROCURAR</p>
           </Button>
-          <Button className="upload-btn" onClick={() => setUploadModalOn(true)}>
-            <p><span>+ </span>UPLOAD DE MEMBROS</p>
+          <Button className={`upload-btn ${searchOn === true ? "hide" : ""}`} onClick={() => setUploadModalOn(true)}>
+            <p>
+              <span>+ </span>UPLOAD DE MEMBROS
+            </p>
           </Button>
         </div>
         <div
@@ -86,12 +88,10 @@ function Home() {
         </div>
         <div
           className={`upload-modal ${
-            uploadModalOn === true
-              ? "upload-modal-on"
-              : ""
+            uploadModalOn === true ? "upload-modal-on" : ""
           }`}
         >
-          <UploadModal />
+          <UploadModal setUploadModalOn={setUploadModalOn} />
         </div>
         <SearchResult
           setEditModalOn={setEditModalOn}
