@@ -1,4 +1,4 @@
 # hiring-support
 
 
-## run npm install node-sass before start
+## run _npm install node-sass_ before start
