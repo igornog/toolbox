@@ -5,10 +5,12 @@ import toolboxIcon from "../assets/toolbox.png";
 import NavBar from "../components/NavBar";
 import SearchResult from "../components/SearchResult";
 import Button from "../atoms/button"
+import EditModal from "../components/EditModal";
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
   const [searchOn, setsearchOn] = useState(false);
+  const [editModalOn, seteditModalOn] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -32,9 +34,9 @@ function Home() {
   return (
     <>
       <section className={`home-section ${searchOn === true ? 'search-on' : ''}`}>
-        <NavBar />
+        <NavBar setsearchOn={setsearchOn} />
         <div className="search-box" >
-          <h2>
+          <h2 onClick={() => setsearchOn(false)}>
             Hiring Toolbox{" "}
             <span>
               <img src={toolboxIcon} alt="toolbox-icon"></img>
@@ -53,7 +55,10 @@ function Home() {
             <p>PROCURAR</p>
           </Button>
         </div>
-        <SearchResult />
+        <div className={`edit-modal ${editModalOn === true ? 'edit-modal-on' : ''}`}>
+          <EditModal />
+        </div>
+        <SearchResult seteditModalOn={seteditModalOn}/>
       </section>
     </>
   );
