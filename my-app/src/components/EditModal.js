@@ -3,7 +3,7 @@ import "./editModal.scss";
 
 function EditModal(params) {
   const closeEditModal = () => {
-    params.seteditModalOn(false);
+    params.setEditModalOn(false);
   };
 
   return (

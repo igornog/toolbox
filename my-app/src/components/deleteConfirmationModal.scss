@@ -1,0 +1,33 @@
+.delete-confirmation-modal {
+  display: none;
+  &-on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    z-index: 999;
+    section {
+      background-color: #fff;
+      width: 70vw;
+      height: 50vh;
+      top: 0;
+      border-radius: 4px;
+      div {
+        span {
+          position: absolute;
+          color: #fff;
+          cursor: pointer;
+          top: 0;
+          padding: 15px 30px 0 0;
+          right: 0;
+          p {
+            color: black;
+            font-size: 30px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

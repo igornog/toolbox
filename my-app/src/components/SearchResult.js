@@ -4,7 +4,11 @@ import "./SearchResult.scss";
 function SearchResult(params) {
 
   const openEditModal = () => {
-    params.seteditModalOn(true)
+    params.setEditModalOn(true)
+  }
+
+  const openDeleteConfirmationModal = () => {
+    params.setDeleteConfirmationModalOn(true)
   }
 
   return (
@@ -61,7 +65,7 @@ function SearchResult(params) {
                 <td>01/01/2021</td>
                 <td>
                   <p onClick={openEditModal}>editar</p>
-                  <p>apagar</p>
+                  <p onClick={openDeleteConfirmationModal}>apagar</p>
                 </td>
               </tr>
             </tbody>

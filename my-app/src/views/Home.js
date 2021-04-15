@@ -4,13 +4,15 @@ import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
 import NavBar from "../components/NavBar";
 import SearchResult from "../components/SearchResult";
-import Button from "../atoms/button"
+import Button from "../atoms/button";
 import EditModal from "../components/EditModal";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
-  const [searchOn, setsearchOn] = useState(false);
-  const [editModalOn, seteditModalOn] = useState(false);
+  const [searchOn, setSearchOn] = useState(false);
+  const [editModalOn, setEditModalOn] = useState(false);
+  const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -33,10 +35,12 @@ function Home() {
 
   return (
     <>
-      <section className={`home-section ${searchOn === true ? 'search-on' : ''}`}>
-        <NavBar setsearchOn={setsearchOn} />
-        <div className="search-box" >
-          <h2 onClick={() => setsearchOn(false)}>
+      <section
+        className={`home-section ${searchOn === true ? "search-on" : ""}`}
+      >
+        <NavBar setsearchOn={setSearchOn} />
+        <div className="search-box">
+          <h2 onClick={() => setSearchOn(false)}>
             Hiring Toolbox{" "}
             <span>
               <img src={toolboxIcon} alt="toolbox-icon"></img>
@@ -51,14 +55,27 @@ function Home() {
               <option value="id">Carteirinha</option>
             </select>
           </div>
-          <Button className="" onClick={() => setsearchOn(true)}>
+          <Button className="" onClick={() => setSearchOn(true)}>
             <p>PROCURAR</p>
           </Button>
         </div>
-        <div className={`edit-modal ${editModalOn === true ? 'edit-modal-on' : ''}`}>
-          <EditModal seteditModalOn={seteditModalOn}/>
+        <div
+          className={`edit-modal ${
+            editModalOn === true ? "edit-modal-on" : ""
+          }`}
+        >
+          <EditModal setEditModalOn={setEditModalOn} />
         </div>
-        <SearchResult seteditModalOn={seteditModalOn}/>
+        <div
+          className={`delete-confirmation-modal ${
+            deleteConfirmationModalOn === true ? "delete-confirmation-modal-on" : ""
+          }`}
+        >
+          <DeleteConfirmationModal
+            setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
+          />
+        </div>
+        <SearchResult setEditModalOn={setEditModalOn} setDeleteConfirmationModalOn={setDeleteConfirmationModalOn} />
       </section>
     </>
   );
