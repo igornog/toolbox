@@ -7,12 +7,15 @@ function DeleteConfirmationModal(params) {
   };
 
   return (
-    <section>
-      <div>
-        <span onClick={closeConfirmationModal}><p>X</p></span>
-        Editar
-      </div>
-    </section>
+    <>
+      <div className="modal-background"></div>
+      <section>
+        <div>
+          <span onClick={closeConfirmationModal}><p>X</p></span>
+          Editar
+        </div>
+      </section>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-.delete-confirmation-modal {
+.upload-modal {
   display: none;
   &-on {
     display: flex;
@@ -15,9 +15,9 @@
     }
     section {
       background-color: #fff;
-      width: 70vw;
       z-index: 9;
-      height: 50vh;
+      width: 95vw;
+      height: 95vh;
       top: 0;
       border-radius: 4px;
       div {

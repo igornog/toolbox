@@ -203,6 +203,12 @@
                 align-items: center;
       }
     }
+    .upload-btn {
+      bottom: 0;
+      position: absolute;
+      margin-bottom: 50px;
+      width: 25%;
+    }
   }
   &.search-on {
     .search-result {

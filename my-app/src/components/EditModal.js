@@ -7,12 +7,15 @@ function EditModal(params) {
   };
 
   return (
-    <section>
-      <div>
-        <span onClick={closeEditModal}><p>X</p></span>
-        Editar
-      </div>
-    </section>
+    <>
+      <div className="modal-background"></div>
+      <section>
+        <div>
+          <span onClick={closeEditModal}><p>X</p></span>
+          Editar
+        </div>
+      </section>
+    </>
   );
 }
 

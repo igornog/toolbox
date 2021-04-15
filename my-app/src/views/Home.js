@@ -6,13 +6,17 @@ import NavBar from "../components/NavBar";
 import SearchResult from "../components/SearchResult";
 import Button from "../atoms/button";
 import EditModal from "../components/EditModal";
+import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
   const [searchOn, setSearchOn] = useState(false);
+  const [uploadModalOn, setUploadModalOn] = useState(false);
   const [editModalOn, setEditModalOn] = useState(false);
-  const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(false);
+  const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(
+    false
+  );
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -58,6 +62,9 @@ function Home() {
           <Button className="" onClick={() => setSearchOn(true)}>
             <p>PROCURAR</p>
           </Button>
+          <Button className="upload-btn" onClick={() => setUploadModalOn(true)}>
+            <p><span>+ </span>UPLOAD DE MEMBROS</p>
+          </Button>
         </div>
         <div
           className={`edit-modal ${
@@ -68,14 +75,28 @@ function Home() {
         </div>
         <div
           className={`delete-confirmation-modal ${
-            deleteConfirmationModalOn === true ? "delete-confirmation-modal-on" : ""
+            deleteConfirmationModalOn === true
+              ? "delete-confirmation-modal-on"
+              : ""
           }`}
         >
           <DeleteConfirmationModal
             setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
           />
         </div>
-        <SearchResult setEditModalOn={setEditModalOn} setDeleteConfirmationModalOn={setDeleteConfirmationModalOn} />
+        <div
+          className={`upload-modal ${
+            uploadModalOn === true
+              ? "upload-modal-on"
+              : ""
+          }`}
+        >
+          <UploadModal />
+        </div>
+        <SearchResult
+          setEditModalOn={setEditModalOn}
+          setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
+        />
       </section>
     </>
   );
