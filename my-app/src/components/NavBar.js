@@ -23,10 +23,12 @@ function NavBar(params) {
 
   const closeSearch = () => {
     params.setsearchOn(false);
+    closeMenus();
   };
 
   const openUploadModal = () => {
     params.setUploadModalOn(true);
+    closeMenus();
   };
 
   return (
