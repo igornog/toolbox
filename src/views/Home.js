@@ -8,6 +8,7 @@ import Button from "../atoms/button";
 import EditModal from "../components/EditModal";
 import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import ListCompaniesService from "../services/listCompanies";
 
 function Home() {
   const [inputMask, setInputMask] = useState(false);
@@ -37,6 +38,11 @@ function Home() {
     }
   };
 
+  const search = () => {
+    setSearchOn(true)
+    ListCompaniesService.listAllCompanies();
+  }
+
   return (
     <>
       <section
@@ -59,7 +65,7 @@ function Home() {
               <option value="id">Carteirinha</option>
             </select>
           </div>
-          <Button className="" onClick={() => setSearchOn(true)}>
+          <Button className="" onClick={search}>
             <p>PROCURAR</p>
           </Button>
           <Button className={`upload-btn ${searchOn === true ? "hide" : ""}`} onClick={() => setUploadModalOn(true)}>
