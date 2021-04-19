@@ -56,7 +56,7 @@ jobs:
       - gcp-gke/rollout-image:
           cluster: development-cluster
           deployment: hiring-toolbox-web-deploy
-          container: hiring-toolbox-container
+          container: hiring-toolbox-web-container
           image: gcr.io/oisami-dev/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating          
           
   deploy-stage:
@@ -71,7 +71,7 @@ jobs:
       - gcp-gke/rollout-image:
           cluster: staging-cluster
           deployment: hiring-toolbox-web-deploy
-          container: hiring-toolbox-container
+          container: hiring-toolbox-web-container
           image: gcr.io/snappy-way-255320/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating 
 
   deploy-prod:
@@ -86,7 +86,7 @@ jobs:
       - gcp-gke/rollout-image:
           cluster: production-cluster
           deployment: hiring-toolbox-web-deploy
-          container: hiring-toolbox-container
+          container: hiring-toolbox-web-container
           image: gcr.io/oisami-prod/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating                
 workflows:
   build_update_deploy:
