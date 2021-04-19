@@ -1,0 +1,139 @@
+version: 2.1
+dependencies:
+orbs:
+  # node: twuni/nodejs@12.10.0
+  gcp-gke: circleci/gcp-gke@0.2.0
+  gcr: circleci/gcp-gcr@0.7.1
+jobs:
+  Build-Push-Image-Docker-Dev:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}
+          dockerfile: Dockerfile.dev
+      - gcr/push-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}
+
+  Build-Push-Image-Docker-Staging:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}
+          dockerfile: Dockerfile.staging
+      - gcr/push-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}
+          
+  Build-Push-Image-Docker-Prod:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}
+      - gcr/push-image:
+          image: hiring-toolbox-web
+          tag: ${CIRCLE_SHA1}          
+
+  deploy-dev:
+    description: Deploy application to Google Kubernetes Engine
+    machine: true
+    steps:
+      # Install `gcloud` and `kubectl` if not already installed.
+      - gcp-gke/install
+      # Initialize the `gcloud` CLI.
+      - gcp-gke/init
+      # Update a deployment Docker image.
+      - gcp-gke/rollout-image:
+          cluster: development-cluster
+          deployment: hiring-toolbox-web-deploy
+          container: hiring-toolbox-container
+          image: gcr.io/oisami-dev/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating          
+          
+  deploy-stage:
+    description: Deploy application to Google Kubernetes Engine
+    machine: true
+    steps:
+      # Install `gcloud` and `kubectl` if not already installed.
+      - gcp-gke/install
+      # Initialize the `gcloud` CLI.
+      - gcp-gke/init
+      # Update a deployment Docker image.
+      - gcp-gke/rollout-image:
+          cluster: staging-cluster
+          deployment: hiring-toolbox-web-deploy
+          container: hiring-toolbox-container
+          image: gcr.io/snappy-way-255320/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating 
+
+  deploy-prod:
+    description: Deploy application to Google Kubernetes Engine
+    machine: true
+    steps:
+      # Install `gcloud` and `kubectl` if not already installed.
+      - gcp-gke/install
+      # Initialize the `gcloud` CLI.
+      - gcp-gke/init
+      # Update a deployment Docker image.
+      - gcp-gke/rollout-image:
+          cluster: production-cluster
+          deployment: hiring-toolbox-web-deploy
+          container: hiring-toolbox-container
+          image: gcr.io/oisami-prod/hiring-toolbox-web:${CIRCLE_SHA1} # change version when updating                
+workflows:
+  build_update_deploy:
+    jobs:
+      - Build-Push-Image-Docker-Dev:
+          context: development
+          filters:
+            branches:
+              only: 
+                - development
+
+      - Build-Push-Image-Docker-Staging:
+          context: staging
+          filters:
+            branches:
+              only: 
+                - staging
+
+      - Build-Push-Image-Docker-Prod:
+          context: production
+          filters:
+            branches:
+              only: 
+                - master            
+
+      - deploy-dev:
+          context: development
+          filters:
+            branches:
+              only: development
+          requires:
+            - Build-Push-Image-Docker-Dev
+
+      - deploy-stage:
+          context: staging
+          filters:
+            branches:
+              only: staging
+          requires:
+            - Build-Push-Image-Docker-Staging
+              
+      - deploy-prod:
+          context: production
+          filters:
+            branches:
+              only: master
+          requires:
+            - Build-Push-Image-Docker-Prod
