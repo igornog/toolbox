@@ -14,7 +14,6 @@ jobs:
       - gcr/build-image:
           image: hiring-toolbox-web
           tag: ${CIRCLE_SHA1}
-          dockerfile: Dockerfile.dev
       - gcr/push-image:
           image: hiring-toolbox-web
           tag: ${CIRCLE_SHA1}
@@ -28,7 +27,6 @@ jobs:
       - gcr/build-image:
           image: hiring-toolbox-web
           tag: ${CIRCLE_SHA1}
-          dockerfile: Dockerfile.staging
       - gcr/push-image:
           image: hiring-toolbox-web
           tag: ${CIRCLE_SHA1}
