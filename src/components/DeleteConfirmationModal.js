@@ -16,8 +16,8 @@ function DeleteConfirmationModal(params) {
           <div className="content">
             <p>Esses dados serão apagados diretamente no DW.<br/> Você tem certeza que quer continuar?</p>
             <div>
-              <Button>Sim, quero deletar</Button>
-              <Button>Não</Button>
+              <Button onClick={closeConfirmationModal}>Sim, quero deletar</Button>
+              <Button onClick={closeConfirmationModal}>Não</Button>
             </div>
           </div>
         </div>

@@ -40,6 +40,9 @@
         button {
           width: 40%;
           margin: 0 30px;
+          @media only screen and (max-width: 1024px) {
+            margin: 0 15px;
+          }
         }
       }
       div {
