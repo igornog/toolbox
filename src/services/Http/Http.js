@@ -5,7 +5,10 @@ const request = axios.create({
 });
 
 const bkoRequest = axios.create({
-  baseURL: `https://api-dev.samisaude.com.br/v1/backoffice/`
+  baseURL: `https://api-dev.samisaude.com.br/v1/backoffice/`,
+  headers: {
+    'API-Token': `1ff41e89d825c9665cba01254f71b2a7`
+	}
 });
 
 class HttpService {
