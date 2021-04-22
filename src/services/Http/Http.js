@@ -1,13 +1,9 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: process.env.REACT_APP_API_ENDPOINT,
-});
-
-const bkoRequest = axios.create({
-  baseURL: `https://api-dev.samisaude.com.br/v1/backoffice/`,
+  baseURL: `https://api-dev.samisaude.com.br/v1/`,
   headers: {
-    'API-Token': `1ff41e89d825c9665cba01254f71b2a7`
+    'api-token': `1ff41e89d825c9665cba01254f71b2a7`
 	}
 });
 
@@ -26,10 +22,6 @@ class HttpService {
 
   static delete = (url) => {
     return request.delete(url)
-  }
-  
-  static getCompanies = url => {
-    return bkoRequest.get(url)
   }
 }
 

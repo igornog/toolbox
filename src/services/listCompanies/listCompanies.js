@@ -1,7 +1,15 @@
-import HttpService from '../Http'
+import HttpService from "../Http";
 
 class ListCompaniesService {
-    static listAllCompanies = () => HttpService.getCompanies(`company/`)
-  }
+  static listAllCompanies = (cpnjNumber) =>
+    HttpService.get(
+      `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
+        cpnjNumber +
+        `&limit=100`
+    );
 
-export default ListCompaniesService 
+  static checkCNPJ = (cpnjNumber) =>
+    HttpService.get("hiring/search/company?cnpj=" + cpnjNumber);
+}
+
+export default ListCompaniesService;
