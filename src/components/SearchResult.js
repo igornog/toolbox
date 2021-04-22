@@ -22,24 +22,24 @@ function SearchResult(params) {
             <Button className="btn-warning">excluir empresa</Button>
           </div>
           <div className="search-result-aditional-info">
-            <p>
+            {/* <p>
               Data de abertura<span>00/00/0000</span>
-            </p>
+            </p> */}
             <p>
-              <span>cidade</span>
-              <span>estado</span>
+              <span>{params.companyCity}</span>
+              <span>{params.companyState}</span>
             </p>
           </div>
           <div className="search-result-aditional-info">
             <p>
-              Porte<span>MEI</span>
+              Porte<span>{params.companySize}</span>
             </p>
             <p>
-              Cód.Nat. Jurídica<span>0000</span>
+              Cód.Nat. Jurídica<span>{params.companyLegalNature}</span>
             </p>
-            <p>
+            {/* <p>
               Situação Cadastral<span>ATIVA</span>
-            </p>
+            </p> */}
           </div>
           <div className="hiring-step">
             <p>Step atual no fluxo de contratação<span>DOCUMENTOS</span></p>

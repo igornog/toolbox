@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import InputMask from "react-input-mask";
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
@@ -9,6 +10,7 @@ import EditModal from "../components/EditModal";
 import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import ListCompaniesService from "../services/listCompanies";
+import ListMembersService from "../services/listMembers";
 
 function Home() {
   const [inputMask, setInputMask] = useState("99.999.999/9999-99");
@@ -24,6 +26,10 @@ function Home() {
   const [cnpjNumber, setCnpjNumber] = useState(false);
   const [companyId, setCompanyId] = useState(false);
   const [hirerId, setHirerId] = useState(false);
+  const [companyCity, setCompanyCity] = useState(false);
+  const [companyState, setCompanyState] = useState(false);
+  const [companySize, setCompanySize] = useState(false);
+  const [companyLegalNature, setCompanyLegalNature] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -66,8 +72,12 @@ function Home() {
           setCnpjNumber(cnpjFormatted);
           setSearchOn(true);
 
-          ListCompaniesService.checkCNPJ(cnpjRawNumber).then((data) => {
-            console.logo(data);
+          ListCompaniesService.checkCNPJ(companyId).then((data) => {
+            console.log(data.data.data);
+            setCompanyCity(data.data.data.addressInfo.city);
+            setCompanyState(data.data.data.addressInfo.state);
+            setCompanySize(data.data.data.size);
+            setCompanyLegalNature(data.data.data.legal_nature.code);
           });
         }
       })
@@ -156,6 +166,10 @@ function Home() {
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
           companyName={companyName}
           cnpjNumber={cnpjNumber}
+          companyCity={companyCity}
+          companyState={companyState}
+          companyLegalNature={companyLegalNature}
+          companySize={companySize}
         />
       </section>
     </>
