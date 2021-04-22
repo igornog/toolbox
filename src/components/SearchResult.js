@@ -17,8 +17,8 @@ function SearchResult(params) {
       <section className="search-result">
         <div className="search-result-company-content">
           <div className="search-result-main-info">
-            <h2>Nome da empresa</h2>
-            <h3>00.000.000/0000-00</h3>
+            <h2>{params.companyName}</h2>
+            <h3>{params.cnpjNumber}</h3>
             <Button className="btn-warning">excluir empresa</Button>
           </div>
           <div className="search-result-aditional-info">
