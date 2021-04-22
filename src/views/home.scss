@@ -220,6 +220,17 @@
         width: 75%;
       }
     }
+    .cnpj-not-found {
+      display: none;
+      text-align: center;
+      &.show {
+        display: block;
+      }
+      p {
+        margin: 7px 0 0 0;
+        font-size: 18px;
+      }
+    }
   }
   &.search-on {
     .search-result {
