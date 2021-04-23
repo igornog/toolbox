@@ -16,13 +16,16 @@ function SearchResult(params) {
       <section className="search-result">
         <div className="search-result-company-content">
           <div className="search-result-main-info">
-            <h2>{params.companyName}</h2>
+            <h2>{params.companyAlias}</h2>
+            <h3>{params.companyName}</h3>
             <h3>{params.cnpjNumber}</h3>
             <div>
               <Button className="btn-warning" onClick={openDeleteConfirmationModal}>excluir empresa</Button>
-              <a href={params.contractUrl}>
-                <Button className="btn-contract">baixar contrato</Button>
-              </a>
+              {params.contractUrl > "" ?
+                <a href={params.contractUrl}>
+                  <Button className="btn-contract">baixar contrato</Button>
+                </a> : <p>Não possui link do contrato</p>              
+              }
             </div>
           </div>
           <div className="search-result-aditional-info">
@@ -42,13 +45,16 @@ function SearchResult(params) {
           </div>
           <div className="search-result-aditional-info">
             <p>
-              Data do pagamento<span>{params.paymentDate}</span>
+              Data do pagamento
+              {params.paymentDate ? <span>{params.paymentDate}</span> : <span>Não foi pago</span>}
             </p>
             <p>
-              Método de pagamento<span>{params.paymentMethod}</span>
+              Método de pagamento
+              {params.paymentMethod ? <span>{params.paymentMethod}</span> : <span>-</span>}
             </p>
             <p>
-              Valor pago<span>R$ {params.paymentValue},00</span>
+              Valor pago
+              {params.paymentValue ? <span>{params.paymentDate}</span> : <span>-</span>}
             </p>
           </div>
           <div className="hiring-step">
