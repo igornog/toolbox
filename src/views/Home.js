@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import InputMask from "react-input-mask";
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
@@ -9,6 +10,7 @@ import EditModal from "../components/EditModal";
 import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import ListCompaniesService from "../services/listCompanies";
+import ListMembersService from "../services/listMembers";
 
 function Home() {
   const [inputMask, setInputMask] = useState("99.999.999/9999-99");
@@ -24,6 +26,14 @@ function Home() {
   const [cnpjNumber, setCnpjNumber] = useState(false);
   const [companyId, setCompanyId] = useState(false);
   const [hirerId, setHirerId] = useState(false);
+  const [companyCity, setCompanyCity] = useState(false);
+  const [companyState, setCompanyState] = useState(false);
+  const [companySize, setCompanySize] = useState(false);
+  const [companyLegalNature, setCompanyLegalNature] = useState(false);
+  const [paymentDate, setPaymentDate] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(false);
+  const [paymentValue, setPaymentValue] = useState(false);
+  const [contractUrl, setContractUrl] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -46,7 +56,7 @@ function Home() {
 
   const searchCompany = () => {
     ListCompaniesService.listAllCompanies(cnpjRawNumber)
-      .then((data) => {
+      .then(async (data) => {
         if (
           data.data.data.companies.length === 0 ||
           cnpjRawNumber.length !== 14
@@ -54,22 +64,40 @@ function Home() {
           setCnpjNotFound(true);
           setSearchOn(false);
         } else if (cnpjRawNumber.length === 14) {
-          const cnpjFormatted = data.data.data.companies[0].cnpj.replace(
-            /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-            "$1.$2.$3/$4-$5"
-          );
-          console.log(data.data.data.companies);
           setCnpjNotFound(false);
-          setCompanyId(data.data.data.companies[0].companyId);
-          setHirerId(data.data.data.companies[0].hirerId);
-          setCompanyName(data.data.data.companies[0].name);
-          setCnpjNumber(cnpjFormatted);
           setSearchOn(true);
-
-          ListCompaniesService.checkCNPJ(cnpjRawNumber).then((data) => {
-            console.logo(data);
-          });
+          console.log(data)
+          const companyId = data.data.data.companies[0].companyId
+          const companyResponse = companyId
+            ? await ListCompaniesService.checkCNPJ(companyId)
+            : false;
+          return companyResponse;
         }
+      })
+      .then((companyResponse) => {
+        console.log(companyResponse);
+        const cnpjFormatted = companyResponse.data.data.cnpj.replace(
+          /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+          "$1.$2.$3/$4-$5"
+        );
+        const paymentDate = companyResponse.data.data.paymentDate.split("T")[0];
+
+        console.log(companyResponse.data.data);
+        setCompanyId(companyResponse.data.data.id);
+        setHirerId(companyResponse.data.data.hirerId);
+        setCompanyName(companyResponse.data.data.name);
+        setCnpjNumber(cnpjFormatted);
+
+        setCompanyCity(companyResponse.data.data.addressInfo.city);
+        setCompanyState(companyResponse.data.data.addressInfo.state);
+        setCompanySize(companyResponse.data.data.size);
+        setCompanyLegalNature(companyResponse.data.data.legal_nature.code);
+
+        setContractUrl(companyResponse.data.data.contractUrl)
+
+        setPaymentDate(paymentDate)
+        setPaymentMethod(companyResponse.data.data.paymentMethod)
+        setPaymentValue(companyResponse.data.data.paymentValue)
       })
       .catch((e) => {
         console.log(e);
@@ -156,6 +184,14 @@ function Home() {
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
           companyName={companyName}
           cnpjNumber={cnpjNumber}
+          companyCity={companyCity}
+          companyState={companyState}
+          companyLegalNature={companyLegalNature}
+          companySize={companySize}
+          paymentDate={paymentDate}
+          paymentMethod={paymentMethod}
+          paymentValue={paymentValue}
+          contractUrl={contractUrl}
         />
       </section>
     </>

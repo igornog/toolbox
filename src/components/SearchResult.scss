@@ -8,9 +8,15 @@
   &-company-content,
   &-beneficiaries-content {
     display: flex;
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     justify-content: space-between;
+    .search-result-main-info {
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+    }
     .search-result-aditional-info {
       p {
         display: flex;
@@ -28,6 +34,7 @@
     justify-content: center;
     table {
       border-collapse: collapse;
+      width: 90%;
     }
 
     td,
@@ -63,7 +70,7 @@
         margin: 15px 0;
       }
     }
-    .btn-warning {
+    .btn-warning, .btn-contract {
       width: 50%;
       height: 20px;
       margin: 0;
@@ -72,6 +79,12 @@
       @media only screen and (max-width: 1024px) {
         height: 40px;
       }
+    }
+    .btn-contract {
+      margin: 10px 0 0;
+      height: 40px;
+      font-size: 18px;
+      background-color: lightseagreen;
     }
     .btn-atention {
       width: 100%;
