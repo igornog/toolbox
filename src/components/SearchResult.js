@@ -19,7 +19,7 @@ function SearchResult(params) {
             <h2>{params.companyName}</h2>
             <h3>{params.cnpjNumber}</h3>
             <div>
-              <Button className="btn-warning">excluir empresa</Button>
+              <Button className="btn-warning" onClick={openDeleteConfirmationModal}>excluir empresa</Button>
               <a href={params.contractUrl}>
                 <Button className="btn-contract">baixar contrato</Button>
               </a>
