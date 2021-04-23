@@ -30,6 +30,10 @@ function Home() {
   const [companyState, setCompanyState] = useState(false);
   const [companySize, setCompanySize] = useState(false);
   const [companyLegalNature, setCompanyLegalNature] = useState(false);
+  const [paymentDate, setPaymentDate] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState(false);
+  const [paymentValue, setPaymentValue] = useState(false);
+  const [contractUrl, setContractUrl] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -52,7 +56,7 @@ function Home() {
 
   const searchCompany = () => {
     ListCompaniesService.listAllCompanies(cnpjRawNumber)
-      .then((data) => {
+      .then(async (data) => {
         if (
           data.data.data.companies.length === 0 ||
           cnpjRawNumber.length !== 14
@@ -60,26 +64,40 @@ function Home() {
           setCnpjNotFound(true);
           setSearchOn(false);
         } else if (cnpjRawNumber.length === 14) {
-          const cnpjFormatted = data.data.data.companies[0].cnpj.replace(
-            /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-            "$1.$2.$3/$4-$5"
-          );
-          console.log(data.data.data.companies);
           setCnpjNotFound(false);
-          setCompanyId(data.data.data.companies[0].companyId);
-          setHirerId(data.data.data.companies[0].hirerId);
-          setCompanyName(data.data.data.companies[0].name);
-          setCnpjNumber(cnpjFormatted);
           setSearchOn(true);
-
-          ListCompaniesService.checkCNPJ(companyId).then((data) => {
-            console.log(data.data.data);
-            setCompanyCity(data.data.data.addressInfo.city);
-            setCompanyState(data.data.data.addressInfo.state);
-            setCompanySize(data.data.data.size);
-            setCompanyLegalNature(data.data.data.legal_nature.code);
-          });
+          console.log(data)
+          const companyId = data.data.data.companies[0].companyId
+          const companyResponse = companyId
+            ? await ListCompaniesService.checkCNPJ(companyId)
+            : false;
+          return companyResponse;
         }
+      })
+      .then((companyResponse) => {
+        console.log(companyResponse);
+        const cnpjFormatted = companyResponse.data.data.cnpj.replace(
+          /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+          "$1.$2.$3/$4-$5"
+        );
+        const paymentDate = companyResponse.data.data.paymentDate.split("T")[0];
+
+        console.log(companyResponse.data.data);
+        setCompanyId(companyResponse.data.data.id);
+        setHirerId(companyResponse.data.data.hirerId);
+        setCompanyName(companyResponse.data.data.name);
+        setCnpjNumber(cnpjFormatted);
+
+        setCompanyCity(companyResponse.data.data.addressInfo.city);
+        setCompanyState(companyResponse.data.data.addressInfo.state);
+        setCompanySize(companyResponse.data.data.size);
+        setCompanyLegalNature(companyResponse.data.data.legal_nature.code);
+
+        setContractUrl(companyResponse.data.data.contractUrl)
+
+        setPaymentDate(paymentDate)
+        setPaymentMethod(companyResponse.data.data.paymentMethod)
+        setPaymentValue(companyResponse.data.data.paymentValue)
       })
       .catch((e) => {
         console.log(e);
@@ -170,6 +188,10 @@ function Home() {
           companyState={companyState}
           companyLegalNature={companyLegalNature}
           companySize={companySize}
+          paymentDate={paymentDate}
+          paymentMethod={paymentMethod}
+          paymentValue={paymentValue}
+          contractUrl={contractUrl}
         />
       </section>
     </>
