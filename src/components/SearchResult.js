@@ -64,25 +64,23 @@ function SearchResult(params) {
           <table>
             <thead>
               <tr>
+                <th>perfil</th>
                 <th>id</th>
                 <th>nome</th>
                 <th>cpf</th>
                 <th>plano</th>
                 <th>data de nascimento</th>
-                <th>tipo de cobrança</th>
-                <th>data do pagamento</th>
                 <th>ações</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>Contratante</td>
                 <td>1234567890</td>
                 <td>Igor Carlos Mathias Nogueira</td>
                 <td>417.775.328-92</td>
                 <td>Apartamento</td>
                 <td>08/03/1993</td>
-                <td>Cartão de crédito</td>
-                <td>01/01/2021</td>
                 <td>
                   <p onClick={openEditModal}>editar</p>
                   <p onClick={openDeleteConfirmationModal}>apagar</p>
