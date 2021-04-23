@@ -3,14 +3,13 @@ import Button from "../atoms/button";
 import "./SearchResult.scss";
 
 function SearchResult(params) {
-
   const openEditModal = () => {
-    params.setEditModalOn(true)
-  }
+    params.setEditModalOn(true);
+  };
 
   const openDeleteConfirmationModal = () => {
-    params.setDeleteConfirmationModalOn(true)
-  }
+    params.setDeleteConfirmationModalOn(true);
+  };
 
   return (
     <>
@@ -19,56 +18,69 @@ function SearchResult(params) {
           <div className="search-result-main-info">
             <h2>{params.companyName}</h2>
             <h3>{params.cnpjNumber}</h3>
-            <Button className="btn-warning">excluir empresa</Button>
+            <div>
+              <Button className="btn-warning">excluir empresa</Button>
+              <a href={params.contractUrl}>
+                <Button className="btn-contract">baixar contrato</Button>
+              </a>
+            </div>
           </div>
           <div className="search-result-aditional-info">
-            <p>
+            {/* <p>
               Data de abertura<span>00/00/0000</span>
+            </p> */}
+            <p>
+              <span>{params.companyCity}</span>
+              <span>{params.companyState}</span>
             </p>
             <p>
-              <span>cidade</span>
-              <span>estado</span>
+              Porte<span>{params.companySize}</span>
+            </p>
+            <p>
+              Cód.Nat. Jurídica<span>{params.companyLegalNature}</span>
             </p>
           </div>
           <div className="search-result-aditional-info">
             <p>
-              Porte<span>MEI</span>
+              Data do pagamento<span>{params.paymentDate}</span>
             </p>
             <p>
-              Cód.Nat. Jurídica<span>0000</span>
+              Método de pagamento<span>{params.paymentMethod}</span>
             </p>
             <p>
-              Situação Cadastral<span>ATIVA</span>
+              Valor pago<span>R$ {params.paymentValue},00</span>
             </p>
           </div>
           <div className="hiring-step">
-            <p>Step atual no fluxo de contratação<span>DOCUMENTOS</span></p>
-            <Button className="btn-atention">retornar step no fluxo de contratação</Button>
+            <p>
+              Step atual no fluxo de contratação:<span>DOCUMENTOS</span>
+            </p>
+            <Button className="btn-atention">
+              retornar step
+            </Button>
           </div>
         </div>
         <div className="search-result-beneficiaries-content">
           <table>
             <thead>
               <tr>
+                <th>perfil</th>
                 <th>id</th>
                 <th>nome</th>
                 <th>cpf</th>
                 <th>plano</th>
                 <th>data de nascimento</th>
-                <th>tipo de cobrança</th>
-                <th>data do pagamento</th>
                 <th>ações</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>Contratante</td>
                 <td>1234567890</td>
                 <td>Igor Carlos Mathias Nogueira</td>
                 <td>417.775.328-92</td>
                 <td>Apartamento</td>
                 <td>08/03/1993</td>
-                <td>Cartão de crédito</td>
-                <td>01/01/2021</td>
                 <td>
                   <p onClick={openEditModal}>editar</p>
                   <p onClick={openDeleteConfirmationModal}>apagar</p>

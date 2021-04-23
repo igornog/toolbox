@@ -3,13 +3,13 @@ import HttpService from "../Http";
 class ListCompaniesService {
   static listAllCompanies = (cpnjNumber) =>
     HttpService.get(
-      `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
+      `hiring/backoffice/company/listWithClosedContracts?filterString=` +
         cpnjNumber +
-        `&limit=100`
+        `&limit=1`
     );
 
-  static checkCNPJ = (cpnjNumber) =>
-    HttpService.get("hiring/search/company?cnpj=" + cpnjNumber);
+  static checkCNPJ = (companyId) =>
+    HttpService.get("hiring/backoffice/company/" + companyId);
 }
 
 export default ListCompaniesService;

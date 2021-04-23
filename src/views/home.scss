@@ -237,6 +237,9 @@
       display: block;
       width: 100%;
       display: flex;
+      h2, h3 {
+        margin: 15px 0;
+      }
       &-content{
         display: flex;
         h2, h3 {
