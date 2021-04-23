@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import InputMask from "react-input-mask";
 import "./home.scss";
 import toolboxIcon from "../assets/toolbox.png";
@@ -10,7 +9,7 @@ import EditModal from "../components/EditModal";
 import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import ListCompaniesService from "../services/listCompanies";
-import ListMembersService from "../services/listMembers";
+// import ListMembersService from "../services/listMembers";
 
 function Home() {
   const [inputMask, setInputMask] = useState("99.999.999/9999-99");
@@ -24,8 +23,8 @@ function Home() {
   const [cnpjRawNumber, setCnpjRawNumber] = useState(false);
   const [companyName, setCompanyName] = useState(false);
   const [cnpjNumber, setCnpjNumber] = useState(false);
-  const [companyId, setCompanyId] = useState(false);
-  const [hirerId, setHirerId] = useState(false);
+  // const [companyId, setCompanyId] = useState(false);
+  // const [hirerId, setHirerId] = useState(false);
   const [companyCity, setCompanyCity] = useState(false);
   const [companyState, setCompanyState] = useState(false);
   const [companySize, setCompanySize] = useState(false);
@@ -83,8 +82,8 @@ function Home() {
         const paymentDate = companyResponse.data.data.paymentDate.split("T")[0];
 
         console.log(companyResponse.data.data);
-        setCompanyId(companyResponse.data.data.id);
-        setHirerId(companyResponse.data.data.hirerId);
+        // setCompanyId(companyResponse.data.data.id);
+        // setHirerId(companyResponse.data.data.hirerId);
         setCompanyName(companyResponse.data.data.name);
         setCnpjNumber(cnpjFormatted);
 
