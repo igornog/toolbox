@@ -22,6 +22,7 @@ function Home() {
   const [cnpjNotFound, setCnpjNotFound] = useState(false);
   const [cnpjRawNumber, setCnpjRawNumber] = useState(false);
   const [companyName, setCompanyName] = useState(false);
+  const [companyAlias, setCompanyAlias] = useState(false);
   const [cnpjNumber, setCnpjNumber] = useState(false);
   // const [companyId, setCompanyId] = useState(false);
   // const [hirerId, setHirerId] = useState(false);
@@ -85,6 +86,7 @@ function Home() {
         // setCompanyId(companyResponse.data.data.id);
         // setHirerId(companyResponse.data.data.hirerId);
         setCompanyName(companyResponse.data.data.name);
+        setCompanyAlias(companyResponse.data.data.alias);
         setCnpjNumber(cnpjFormatted);
 
         setCompanyCity(companyResponse.data.data.addressInfo.city);
@@ -182,6 +184,7 @@ function Home() {
           setEditModalOn={setEditModalOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
           companyName={companyName}
+          companyAlias={companyAlias}
           cnpjNumber={cnpjNumber}
           companyCity={companyCity}
           companyState={companyState}
