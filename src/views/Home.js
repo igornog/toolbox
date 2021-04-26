@@ -24,7 +24,7 @@ function Home() {
   const [companyName, setCompanyName] = useState(false);
   const [companyAlias, setCompanyAlias] = useState(false);
   const [cnpjNumber, setCnpjNumber] = useState(false);
-  const [companyId, setCompanyId] = useState(false);;
+  const [companyId, setCompanyId] = useState(false);
   const [companyCity, setCompanyCity] = useState(false);
   const [companyState, setCompanyState] = useState(false);
   const [companySize, setCompanySize] = useState(false);
@@ -33,6 +33,7 @@ function Home() {
   const [paymentMethod, setPaymentMethod] = useState(false);
   const [paymentValue, setPaymentValue] = useState(false);
   const [contractUrl, setContractUrl] = useState(false);
+  const [membersArray, setMembersArray] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -65,15 +66,14 @@ function Home() {
         } else if (cnpjRawNumber.length === 14) {
           setCnpjNotFound(false);
           setSearchOn(true);
-          console.log(data)
-          const companyId = data.data.data.companies[0].companyId
+          console.log(data);
+          const companyId = data.data.data.companies[0].companyId;
           const companyResponse = companyId
-            ? await Promise.all([ListCompaniesService.checkCNPJ(companyId), ListMembersService.getMembers(companyId)])
+            ? await Promise.all([
+                ListCompaniesService.checkCNPJ(companyId),
+                ListMembersService.getMembers(companyId),
+              ])
             : false;
-
-          // const membersResponse = companyId
-          //   ? await ListMembersService.getMembers(companyId)
-          //   : false;
 
           return companyResponse;
         }
@@ -82,12 +82,12 @@ function Home() {
         console.log(companyResponse);
         const cnpjFormatted = companyResponse[0].data.data.cnpj.replace(
           /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-          "$1.$2.$3/$4-$5"  
+          "$1.$2.$3/$4-$5"
         );
-        const paymentDate = companyResponse[0].data.data.paymentDate.split("T")[0];
+        const paymentDate = companyResponse[0].data.data.paymentDate.split(
+          "T"
+        )[0];
 
-        console.log(companyResponse[0].data.data);
-        console.log(companyId)
         setCompanyId(companyResponse[0].data.data.id);
         setCompanyName(companyResponse[0].data.data.name);
         setCompanyAlias(companyResponse[0].data.data.alias);
@@ -98,15 +98,17 @@ function Home() {
         setCompanySize(companyResponse[0].data.data.size);
         setCompanyLegalNature(companyResponse[0].data.data.legal_nature.code);
 
-        setContractUrl(companyResponse[0].data.data.contractUrl)
+        setContractUrl(companyResponse[0].data.data.contractUrl);
 
-        setPaymentDate(paymentDate)
-        setPaymentMethod(companyResponse[0].data.data.paymentMethod)
-        setPaymentValue(companyResponse[0].data.data.paymentValue)
+        setPaymentDate(paymentDate);
+        setPaymentMethod(companyResponse[0].data.data.paymentMethod);
+        setPaymentValue(companyResponse[0].data.data.paymentValue);
+
+        setMembersArray(companyResponse[1].data.data)
       })
       .catch((e) => {
         console.log(e);
-      })
+      });
   };
 
   const watchInput = (e) => {
@@ -198,6 +200,7 @@ function Home() {
           paymentMethod={paymentMethod}
           paymentValue={paymentValue}
           contractUrl={contractUrl}
+          membersArray={membersArray}
         />
       </section>
     </>
