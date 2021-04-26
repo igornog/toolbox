@@ -24,7 +24,7 @@ function Home() {
   const [companyName, setCompanyName] = useState(false);
   const [companyAlias, setCompanyAlias] = useState(false);
   const [cnpjNumber, setCnpjNumber] = useState(false);
-  const [companyId, setCompanyId] = useState(false);
+  // const [companyId, setCompanyId] = useState(false);
   const [companyCity, setCompanyCity] = useState(false);
   const [companyState, setCompanyState] = useState(false);
   const [companySize, setCompanySize] = useState(false);
@@ -89,7 +89,7 @@ function Home() {
           "T"
         )[0] : '';
 
-        setCompanyId(companyResponse[0].data.data.id);
+        // setCompanyId(companyResponse[0].data.data.id);
         setCompanyName(companyResponse[0].data.data.name);
         setCompanyAlias(companyResponse[0].data.data.alias);
         setCnpjNumber(cnpjFormatted);
@@ -153,14 +153,6 @@ function Home() {
           <Button className="" onClick={searchCompany}>
             <p>PROCURAR</p>
           </Button>
-          <Button
-            className={`upload-btn ${searchOn === true ? "hide" : ""}`}
-            onClick={() => setUploadModalOn(true)}
-          >
-            <p>
-              <span>+ </span>UPLOAD DE MEMBROS
-            </p>
-          </Button>
         </div>
         <div
           className={`edit-modal ${
@@ -189,7 +181,13 @@ function Home() {
         </div>
         <SearchResult
           setEditModalOn={setEditModalOn}
+          setUploadModalOn={setUploadModalOn}
+          setsearchOn={setSearchOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
+          uploadModalOn={uploadModalOn}
+          editModalOn={editModalOn}
+          deleteConfirmationModalOn={deleteConfirmationModalOn}
+          deleteModalOn={editModalOn}
           companyName={companyName}
           companyAlias={companyAlias}
           cnpjNumber={cnpjNumber}

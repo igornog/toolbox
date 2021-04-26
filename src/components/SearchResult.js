@@ -3,6 +3,7 @@ import Button from "../atoms/button";
 import "./SearchResult.scss";
 
 function SearchResult(params) {
+
   const openEditModal = () => {
     params.setEditModalOn(true);
   };
@@ -11,9 +12,22 @@ function SearchResult(params) {
     params.setDeleteConfirmationModalOn(true);
   };
 
+  const openUploadModal = () => {
+    params.setUploadModalOn(true);
+  };
+
   return (
     <>
-      <section className="search-result">
+      <section className={`search-result ${
+            params.uploadModalOn === true ? "modal-on" : ""
+          }
+          ${
+            params.editModalOn === true ? "modal-on" : ""
+          }
+          ${
+            params.deleteConfirmationModalOn === true ? "modal-on" : ""
+          }
+          `}>
         <div className="search-result-company-content">
           <div className="search-result-main-info">
             <h2>{params.companyAlias}</h2>
@@ -30,9 +44,7 @@ function SearchResult(params) {
                 <a href={params.contractUrl}>
                   <Button className="btn-contract">baixar contrato</Button>
                 </a>
-              ) : (
-                <p>Não possui link do contrato</p>
-              )}
+              ) : ''}
             </div>
           </div>
           <div className="search-result-aditional-info">
@@ -81,9 +93,19 @@ function SearchResult(params) {
               Step atual no fluxo de contratação:<span>-</span>
             </p>
             <Button className="btn-atention">retornar step</Button>
+            <Button
+              className={`upload-btn ${params.searchOn === true ? "hide" : ""}`}
+              onClick={openUploadModal}
+            >
+              <p>
+                <span>+ </span>UPLOAD DE MEMBROS
+              </p>
+            </Button>
           </div>
         </div>
-        <p className="members-qty">Número de membros: {params.membersArray.length}</p>
+        <p className="members-qty">
+          Número de membros: {params.membersArray.length}
+        </p>
         <div className="search-result-beneficiaries-content">
           <table>
             <thead>
@@ -108,7 +130,7 @@ function SearchResult(params) {
                         <td>{member.name}</td>
                         <td>{member.email}</td>
                         <td>{member.cpf}</td>
-                        <td>{member.planId}</td>
+                        <td>{member.planId = '5f202a77cb10ce002aa52fc0' ? 'Enfermaria' : 'Apartamento'}</td>
                         <td>{member.birthDate}</td>
                         <td>
                           <p onClick={openEditModal}>editar</p>
