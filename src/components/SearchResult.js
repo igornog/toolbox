@@ -56,7 +56,7 @@ function SearchResult(params) {
               {params.paymentDate ? (
                 <span>{params.paymentDate}</span>
               ) : (
-                <span>Não foi pago</span>
+                <span>-</span>
               )}
             </p>
             <p>

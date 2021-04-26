@@ -80,13 +80,14 @@ function Home() {
       })
       .then((companyResponse) => {
         console.log(companyResponse);
+        console.log(companyResponse[0].data.data.cnpj)
         const cnpjFormatted = companyResponse[0].data.data.cnpj.replace(
           /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
           "$1.$2.$3/$4-$5"
         );
-        const paymentDate = companyResponse[0].data.data.paymentDate.split(
+        const paymentDate = companyResponse[0].data.data.paymentDate ? companyResponse[0].data.data.paymentDate.split(
           "T"
-        )[0];
+        )[0] : '';
 
         setCompanyId(companyResponse[0].data.data.id);
         setCompanyName(companyResponse[0].data.data.name);
