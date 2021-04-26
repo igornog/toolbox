@@ -54,7 +54,7 @@ function SearchResult(params) {
             </p>
             <p>
               Valor pago
-              {params.paymentValue ? <span>{params.paymentDate}</span> : <span>-</span>}
+              {params.paymentValue ? <span>R$ {params.paymentValue},00</span> : <span>-</span>}
             </p>
           </div>
           <div className="hiring-step">
