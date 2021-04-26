@@ -20,12 +20,19 @@ function SearchResult(params) {
             <h3>{params.companyName}</h3>
             <h3>{params.cnpjNumber}</h3>
             <div>
-              <Button className="btn-warning" onClick={openDeleteConfirmationModal}>excluir empresa</Button>
-              {params.contractUrl > "" ?
+              <Button
+                className="btn-warning"
+                onClick={openDeleteConfirmationModal}
+              >
+                excluir empresa
+              </Button>
+              {params.contractUrl > "" ? (
                 <a href={params.contractUrl}>
                   <Button className="btn-contract">baixar contrato</Button>
-                </a> : <p>Não possui link do contrato</p>              
-              }
+                </a>
+              ) : (
+                <p>Não possui link do contrato</p>
+              )}
             </div>
           </div>
           <div className="search-result-aditional-info">
@@ -46,26 +53,37 @@ function SearchResult(params) {
           <div className="search-result-aditional-info">
             <p>
               Data do pagamento
-              {params.paymentDate ? <span>{params.paymentDate}</span> : <span>Não foi pago</span>}
+              {params.paymentDate ? (
+                <span>{params.paymentDate}</span>
+              ) : (
+                <span>Não foi pago</span>
+              )}
             </p>
             <p>
               Método de pagamento
-              {params.paymentMethod ? <span>{params.paymentMethod}</span> : <span>-</span>}
+              {params.paymentMethod ? (
+                <span>{params.paymentMethod}</span>
+              ) : (
+                <span>-</span>
+              )}
             </p>
             <p>
               Valor pago
-              {params.paymentValue ? <span>{params.paymentDate}</span> : <span>-</span>}
+              {params.paymentValue ? (
+                <span>R$ {params.paymentValue},00</span>
+              ) : (
+                <span>-</span>
+              )}
             </p>
           </div>
           <div className="hiring-step">
             <p>
-              Step atual no fluxo de contratação:<span>DOCUMENTOS</span>
+              Step atual no fluxo de contratação:<span>-</span>
             </p>
-            <Button className="btn-atention">
-              retornar step
-            </Button>
+            <Button className="btn-atention">retornar step</Button>
           </div>
         </div>
+        <p className="members-qty">Número de membros: {params.membersArray.length}</p>
         <div className="search-result-beneficiaries-content">
           <table>
             <thead>
@@ -73,6 +91,7 @@ function SearchResult(params) {
                 <th>perfil</th>
                 <th>id</th>
                 <th>nome</th>
+                <th>email</th>
                 <th>cpf</th>
                 <th>plano</th>
                 <th>data de nascimento</th>
@@ -80,18 +99,25 @@ function SearchResult(params) {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Contratante</td>
-                <td>1234567890</td>
-                <td>Igor Carlos Mathias Nogueira</td>
-                <td>417.775.328-92</td>
-                <td>Apartamento</td>
-                <td>08/03/1993</td>
-                <td>
-                  <p onClick={openEditModal}>editar</p>
-                  <p onClick={openDeleteConfirmationModal}>apagar</p>
-                </td>
-              </tr>
+              {params.membersArray
+                ? params.membersArray.map((member) => {
+                    return (
+                      <tr>
+                        <td>{member.profile}</td>
+                        <td>{member._id}</td>
+                        <td>{member.name}</td>
+                        <td>{member.email}</td>
+                        <td>{member.cpf}</td>
+                        <td>{member.planId}</td>
+                        <td>{member.birthDate}</td>
+                        <td>
+                          <p onClick={openEditModal}>editar</p>
+                          <p onClick={openDeleteConfirmationModal}>apagar</p>
+                        </td>
+                      </tr>
+                    );
+                  })
+                : ""}
             </tbody>
           </table>
         </div>

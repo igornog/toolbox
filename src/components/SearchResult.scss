@@ -29,7 +29,8 @@
     }
   }
   &-beneficiaries-content {
-    padding: 50px 0 0;
+    padding: 15px 0 0;
+    margin-bottom: 50px;
     width: 100%;
     justify-content: center;
     table {
@@ -103,5 +104,9 @@
         height: 115px;
       }
     }
+  }
+  .members-qty {
+    width: 90%;
+    margin: 35px auto 0;
   }
 }
