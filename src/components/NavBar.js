@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import menuIcon from "../assets/menuIcon.png";
 import LogoutBtn from "../atoms/LogoutBtn";
 
-function NavBar(params) {
+function NavBar(props) {
   const [MenuOpened, setMenuOpened] = useState(false);
   const [ProfileOpened, setProfileOpened] = useState(false);
 
@@ -22,7 +22,7 @@ function NavBar(params) {
   };
 
   const closeSearch = () => {
-    params.setsearchOn(false);
+    props.setsearchOn(false);
     closeMenus();
   };
 

@@ -1,15 +1,15 @@
-import HttpService from "../Http";
+import api from "../api";
 
-class ListCompaniesService {
+class CompaniesServices {
   static listAllCompanies = (cpnjNumber) =>
-    HttpService.get(
+    api.get(
       `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
         cpnjNumber +
         `&limit=1`
     );
 
   static checkCNPJ = (companyId) =>
-    HttpService.get("hiring/backoffice/company/" + companyId);
+    api.get("hiring/backoffice/company/" + companyId);
 }
 
-export default ListCompaniesService;
+export default CompaniesServices;

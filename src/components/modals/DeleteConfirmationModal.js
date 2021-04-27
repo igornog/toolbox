@@ -2,10 +2,10 @@ import React from "react";
 import "./deleteConfirmationModal.scss";
 import Button from "../../atoms/button"
 
-function DeleteConfirmationModal(params) {
+function DeleteConfirmationModal(props) {
   const closeConfirmationModal = () => {
-    params.setDeleteConfirmationModalOn(false);
-    params.setModalOn(false);
+    props.setDeleteConfirmationModalOn(false);
+    props.setModalOn(false);
   };
 
   return (
