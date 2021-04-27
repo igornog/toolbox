@@ -19,6 +19,11 @@ function EditPaymentInfoModal(params) {
           <div className="content">
             <h3>Alterar dados de pagamento</h3>
             <div className="data">
+            <div className="payment-value">
+                <p>
+                  Valor pago: <span>{params.paymentValue}</span>
+                </p>
+              </div>
               <div className="payment-date">
                 <p>
                   Data do pagamento: <input type="date" id="payment-day" name="payment-day"></input>
@@ -31,11 +36,6 @@ function EditPaymentInfoModal(params) {
                     <option>Cartão de Crédito</option>
                     <option>Boleto</option>
                   </select>
-                </p>
-              </div>
-              <div className="payment-value">
-                <p>
-                  Valor pago: <span>{params.paymentValue}</span>
                 </p>
               </div>
             </div>
