@@ -3,31 +3,32 @@ import Button from "../atoms/button";
 import "./SearchResult.scss";
 
 function SearchResult(params) {
-
   const openEditModal = () => {
     params.setEditModalOn(true);
+    params.setModalOn(true);
   };
 
   const openDeleteConfirmationModal = () => {
     params.setDeleteConfirmationModalOn(true);
+    params.setModalOn(true);
+  };
+
+  const openEditPaymentInfoModal = () => {
+    params.setEditPaymentInfoModalOn(true);
+    params.setModalOn(true);
   };
 
   const openUploadModal = () => {
     params.setUploadModalOn(true);
+    params.setModalOn(true);
   };
 
   return (
     <>
-      <section className={`search-result ${
-            params.uploadModalOn === true ? "modal-on" : ""
-          }
-          ${
-            params.editModalOn === true ? "modal-on" : ""
-          }
-          ${
-            params.deleteConfirmationModalOn === true ? "modal-on" : ""
-          }
-          `}>
+      <section
+        className={`search-result ${params.modalOn === true ? "modal-on" : ""}
+          `}
+      >
         <div className="search-result-company-content">
           <div className="search-result-main-info">
             <h2>{params.companyAlias}</h2>
@@ -44,7 +45,9 @@ function SearchResult(params) {
                 <a href={params.contractUrl}>
                   <Button className="btn-contract">baixar contrato</Button>
                 </a>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="search-result-aditional-info">
@@ -62,31 +65,38 @@ function SearchResult(params) {
               Cód.Nat. Jurídica<span>{params.companyLegalNature}</span>
             </p>
           </div>
-          <div className="search-result-aditional-info">
-            <p>
+          <div className="search-result-payment-info">
+            <p className="payment-date">
               Data do pagamento
               {params.paymentDate ? (
-                <span>{params.paymentDate}</span>
+                <p>
+                  <span>{params.paymentDate}</span>
+                </p>
               ) : (
                 <span>-</span>
               )}
             </p>
-            <p>
+            <p className="payment-method">
               Método de pagamento
               {params.paymentMethod ? (
-                <span>{params.paymentMethod}</span>
+                <p>
+                  <span>{params.paymentMethod}</span>
+                </p>
               ) : (
                 <span>-</span>
               )}
             </p>
             <p>
               Valor pago
-              {params.paymentValue ? (
+              {params.paymentValue > 0 ? (
                 <span>R$ {params.paymentValue},00</span>
               ) : (
-                <span>-</span>
+                <span>N/A</span>
               )}
             </p>
+            <Button onClick={openEditPaymentInfoModal} className="edit-btn">
+              editar
+            </Button>
           </div>
           <div className="hiring-step">
             <p>
@@ -111,10 +121,10 @@ function SearchResult(params) {
             <thead>
               <tr>
                 <th>perfil</th>
-                <th>id</th>
+                <th>carteirinha</th>
                 <th>nome</th>
-                <th>email</th>
                 <th>cpf</th>
+                <th>email</th>
                 <th>plano</th>
                 <th>data de nascimento</th>
                 <th>ações</th>
@@ -126,11 +136,17 @@ function SearchResult(params) {
                     return (
                       <tr>
                         <td>{member.profile}</td>
-                        <td>{member._id}</td>
+                        <td>{member.memberId}</td>
                         <td>{member.name}</td>
-                        <td>{member.email}</td>
                         <td>{member.cpf}</td>
-                        <td>{member.planId = '5f202a77cb10ce002aa52fc0' ? 'Enfermaria' : 'Apartamento'}</td>
+                        <td>{member.email}</td>
+                        <td>
+                          {
+                            (member.planId = "5f202a77cb10ce002aa52fc0"
+                              ? "Enfermaria"
+                              : "Apartamento")
+                          }
+                        </td>
                         <td>{member.birthDate}</td>
                         <td>
                           <p onClick={openEditModal}>editar</p>

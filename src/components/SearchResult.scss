@@ -20,11 +20,23 @@
         flex-direction: column;
       }
     }
-    .search-result-aditional-info {
+    .search-result-aditional-info, .search-result-payment-info  {
       p {
         display: flex;
         flex-direction: column;
         margin: 15px 0;
+      }
+      .edit-btn {
+        width: 50%;
+        height: 20px;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+      }
+      .payment-date, .payment-method {
+        p {
+          margin: 0;
+        }
       }
     }
     @media only screen and (max-width: 1024px) {
