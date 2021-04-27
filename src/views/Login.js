@@ -1,5 +1,5 @@
 import React from "react";
-import LoginBtn from '../components/LoginBtn';
+import LoginBtn from '../atoms/LoginBtn';
 import toolboxIcon from '../assets/toolbox.png'
 
 const Login = params => (

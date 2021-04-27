@@ -1,10 +1,11 @@
 import React from "react";
-import Button from "../atoms/button";
+import Button from "../../atoms/button";
 import "./uploadModal.scss";
 
 function UploadModal(params) {
   const closeUploadModal = () => {
     params.setUploadModalOn(false);
+    params.setModalOn(false);
   };
 
   return (

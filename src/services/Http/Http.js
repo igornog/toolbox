@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: `https://api.samisaude.com.br/v1/`,
+  baseURL: `https://api-dev.samisaude.com.br/v1/`,
   headers: {
-    'api-token': `1ff41e89d825c9665cba01254f71b2a8`
+    'api-token': `1ff41e89d825c9665cba01254f71b2a7`
 	}
 });
 
