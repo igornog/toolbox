@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import menuIcon from "../assets/menuIcon.png";
-import LogoutBtn from "../components/LogoutBtn";
+import LogoutBtn from "../atoms/LogoutBtn";
 
-function NavBar(params) {
+function NavBar(props) {
   const [MenuOpened, setMenuOpened] = useState(false);
   const [ProfileOpened, setProfileOpened] = useState(false);
 
@@ -22,12 +22,7 @@ function NavBar(params) {
   };
 
   const closeSearch = () => {
-    params.setsearchOn(false);
-    closeMenus();
-  };
-
-  const openUploadModal = () => {
-    params.setUploadModalOn(true);
+    props.setsearchOn(false);
     closeMenus();
   };
 
@@ -42,9 +37,8 @@ function NavBar(params) {
             <span onClick={closeMenus}>x</span>
             <ul>
               <li onClick={closeSearch}><p>home</p></li>  
-              <li onClick={openUploadModal}><p>upload de membros</p></li>
-              <li onClick={openUploadModal}><p>update forçado do DW para contrato</p></li>
-              <li onClick={openUploadModal}><p>histórico de modificações</p></li>
+              <li><p>update forçado do DW para contrato</p></li>
+              <li><p>histórico de modificações</p></li>
             </ul>
           </div>
         </div>

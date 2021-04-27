@@ -3,7 +3,7 @@ import api from "../api";
 class CompaniesServices {
   static listAllCompanies = (cpnjNumber) =>
     api.get(
-      `hiring/backoffice/company/listWithClosedContracts?filterString=` +
+      `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
         cpnjNumber +
         `&limit=1`
     );

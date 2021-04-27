@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from "react";
-
-import Button from "../atoms/button";
+import Button from "../../atoms/button";
 import "./uploadModal.scss";
-import MembersServices from "../services/members";
+import MembersServices from "../../services/members";
 
 const  UploadModal = (props) => {
   const [ state, setState ] = useState({
@@ -14,6 +13,7 @@ const  UploadModal = (props) => {
 
   const closeUploadModal = () => {
     props.setUploadModalOn(false);
+    props.setModalOn(false);
   };
 
   const fileData = useMemo(() => {
