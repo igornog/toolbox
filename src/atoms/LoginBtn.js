@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useGoogleLogin } from "react-google-login";
-import LogoutBtn from "../components/LogoutBtn";
+import LogoutBtn from "./LogoutBtn";
 import USERS_LIST from "../constants/userList";
 
 import "./LogBtn.scss";

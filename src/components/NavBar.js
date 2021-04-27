@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import menuIcon from "../assets/menuIcon.png";
-import LogoutBtn from "../components/LogoutBtn";
+import LogoutBtn from "../atoms/LogoutBtn";
 
 function NavBar(params) {
   const [MenuOpened, setMenuOpened] = useState(false);
