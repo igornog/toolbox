@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: `https://api.samisaude.com.br/v1/`,
+  baseURL: `https://api-dev.samisaude.com.br/v1/`,
   headers: {
-    'api-token': `1ff41e89d825c9665cba01254f71b2a8`
+    'API-Token': `1ff41e89d825c9665cba01254f71b2a7`
 	}
 });
 
 const requestDownload = axios.create({
-  baseURL: `https://api.samisaude.com.br/v1/`,
+  baseURL: `https://api-dev.samisaude.com.br/v1/`,
   responseType: 'arraybuffer',
   headers: {
     'Content-Disposition': "attachment; filename=template.xlsx",
@@ -33,8 +33,9 @@ class HttpService {
     return request.delete(url)
   }
 
-  static postFile = (url, data, options) => {
-    return request.post(url, data, options);
+  static postFile = (url, data, options = {}) => {
+    console.log(url, data, options)
+    return request.post(url, data);
   }
 
   static getDownload = url => {
