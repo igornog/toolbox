@@ -9,7 +9,7 @@ import EditModal from "../components/EditModal";
 import UploadModal from "../components/UploadModal";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import CompaniesServices from "../services/companies";
-// import MembersServices from "../services/members";
+import MembersServices from "../services/members";
 
 function Home() {
   const [inputMask, setInputMask] = useState("99.999.999/9999-99");
@@ -65,8 +65,13 @@ function Home() {
           console.log(data)
           const companyId = company.companyId
           const companyResponse = companyId
-            ? await CompaniesServices.checkCNPJ(companyId)
+            ? await Promise.all([CompaniesServices.checkCNPJ(companyId), MembersServices.getMembers(companyId)])
             : false;
+
+          // const membersResponse = companyId
+          //   ? await ListMembersService.getMembers(companyId)
+          //   : false;
+
           return companyResponse;
         } else {
           setCnpjNotFound(true);
@@ -75,33 +80,33 @@ function Home() {
       })
       .then((companyResponse) => {
         console.log(companyResponse);
-        const cnpjFormatted = companyResponse.data.data.cnpj.replace(
+        const cnpjFormatted = companyResponse[0].data.data.cnpj.replace(
           /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
-          "$1.$2.$3/$4-$5"
+          "$1.$2.$3/$4-$5"  
         );
-        const paymentDate = companyResponse.data.data.paymentDate.split("T")[0];
+        const paymentDate = companyResponse[0].data.data.paymentDate.split("T")[0];
 
-        console.log(companyResponse.data.data);
-        setCompanyId(companyResponse.data.data.id);
-        // setHirerId(companyResponse.data.data.hirerId);
-        setCompanyName(companyResponse.data.data.name);
-        setCompanyAlias(companyResponse.data.data.alias);
+        console.log(companyResponse[0].data.data);
+        console.log(companyId)
+        setCompanyId(companyResponse[0].data.data.id);
+        setCompanyName(companyResponse[0].data.data.name);
+        setCompanyAlias(companyResponse[0].data.data.alias);
         setCnpjNumber(cnpjFormatted);
 
-        setCompanyCity(companyResponse.data.data.addressInfo.city);
-        setCompanyState(companyResponse.data.data.addressInfo.state);
-        setCompanySize(companyResponse.data.data.size);
-        setCompanyLegalNature(companyResponse.data.data.legal_nature.code);
+        setCompanyCity(companyResponse[0].data.data.addressInfo.city);
+        setCompanyState(companyResponse[0].data.data.addressInfo.state);
+        setCompanySize(companyResponse[0].data.data.size);
+        setCompanyLegalNature(companyResponse[0].data.data.legal_nature.code);
 
-        setContractUrl(companyResponse.data.data.contractUrl)
+        setContractUrl(companyResponse[0].data.data.contractUrl)
 
         setPaymentDate(paymentDate)
-        setPaymentMethod(companyResponse.data.data.paymentMethod)
-        setPaymentValue(companyResponse.data.data.paymentValue)
+        setPaymentMethod(companyResponse[0].data.data.paymentMethod)
+        setPaymentValue(companyResponse[0].data.data.paymentValue)
       })
       .catch((e) => {
         console.log(e);
-      });
+      })
   };
 
   const watchInput = (e) => {
