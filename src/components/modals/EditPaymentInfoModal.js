@@ -1,6 +1,6 @@
 import React from "react";
 import "./editPaymentInfoModal.scss";
-import Button from "../../atoms/button"
+import Button from "../../atoms/button";
 
 function EditPaymentInfoModal(params) {
   const closeEditPaymentInfoModal = () => {
@@ -13,13 +13,33 @@ function EditPaymentInfoModal(params) {
       <div className="modal-background"></div>
       <section>
         <div>
-          <span onClick={closeEditPaymentInfoModal}><p>X</p></span>
+          <span onClick={closeEditPaymentInfoModal}>
+            <p>X</p>
+          </span>
           <div className="content">
-            <p>Esses dados serão apagados diretamente no DW.<br/> Você tem certeza que quer continuar?</p>
-            <div>
-              <Button onClick={closeEditPaymentInfoModal}>Sim, quero deletar</Button>
-              <Button onClick={closeEditPaymentInfoModal}>Não</Button>
+            <h3>Alterar dados de pagamento</h3>
+            <div className="data">
+              <div className="payment-date">
+                <p>
+                  Data do pagamento: <input type="date" id="payment-day" name="payment-day"></input>
+                </p>
+              </div>
+              <div className="payment-method">
+                <p>
+                  Método de pagamento:
+                  <select>
+                    <option>Cartão de Crédito</option>
+                    <option>Boleto</option>
+                  </select>
+                </p>
+              </div>
+              <div className="payment-value">
+                <p>
+                  Valor pago: <span>{params.paymentValue}</span>
+                </p>
+              </div>
             </div>
+            <Button onClick={closeEditPaymentInfoModal}>Confirmar</Button>
           </div>
         </div>
       </section>

@@ -214,6 +214,9 @@ function Home() {
           <EditPaymentInfoModal
             setEditPaymentInfoModalOn={setEditPaymentInfoModalOn}
             setModalOn={setModalOn}
+            paymentDate={paymentDate}
+            paymentMethod={paymentMethod}
+            paymentValue={paymentValue}
           />
         </div>
         <SearchResult
