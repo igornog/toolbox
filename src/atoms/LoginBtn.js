@@ -11,13 +11,13 @@ import { refreshTokenSetup } from "../utils/refreshToken";
 const clientId =
   "318274943652-5svcg57nbr403ica2mq8pv2lqo883ep7.apps.googleusercontent.com";
 
-function LoginHooks(params) {
+function LoginHooks(props) {
   const [loginFailed, setLoginFailed] = useState(false);
 
   const onSuccess = (res) => {
     if (USERS_LIST.includes(res.profileObj.email)) {
       console.log("Login Success: currentUser:", res.profileObj);
-      params.setLog(true);
+      props.setLog(true);
     } else {
       setLoginFailed(true);
     }
@@ -39,7 +39,7 @@ function LoginHooks(params) {
 
   return (
     <>
-      {!params.logged ? (
+      {!props.logged ? (
         <button onClick={signIn} className="button">
           <img src="icons/google.svg" alt="google login" className="icon"></img>
           <span className="buttonText">Sign in with Google</span>

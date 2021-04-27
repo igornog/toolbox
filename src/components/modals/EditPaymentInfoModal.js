@@ -2,10 +2,10 @@ import React from "react";
 import "./editPaymentInfoModal.scss";
 import Button from "../../atoms/button";
 
-function EditPaymentInfoModal(params) {
+function EditPaymentInfoModal(props) {
   const closeEditPaymentInfoModal = () => {
-    params.setEditPaymentInfoModalOn(false);
-    params.setModalOn(false);
+    props.setEditPaymentInfoModalOn(false);
+    props.setModalOn(false);
   };
 
   return (
@@ -21,7 +21,7 @@ function EditPaymentInfoModal(params) {
             <div className="data">
             <div className="payment-value">
                 <p>
-                  Valor pago: <span>{params.paymentValue}</span>
+                  Valor pago: <span>{props.paymentValue}</span>
                 </p>
               </div>
               <div className="payment-date">

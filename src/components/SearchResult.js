@@ -2,38 +2,38 @@ import React from "react";
 import Button from "../atoms/button";
 import "./SearchResult.scss";
 
-function SearchResult(params) {
+function SearchResult(props) {
   const openEditModal = () => {
-    params.setEditModalOn(true);
-    params.setModalOn(true);
+    props.setEditModalOn(true);
+    props.setModalOn(true);
   };
 
   const openDeleteConfirmationModal = () => {
-    params.setDeleteConfirmationModalOn(true);
-    params.setModalOn(true);
+    props.setDeleteConfirmationModalOn(true);
+    props.setModalOn(true);
   };
 
   const openEditPaymentInfoModal = () => {
-    params.setEditPaymentInfoModalOn(true);
-    params.setModalOn(true);
+    props.setEditPaymentInfoModalOn(true);
+    props.setModalOn(true);
   };
 
   const openUploadModal = () => {
-    params.setUploadModalOn(true);
-    params.setModalOn(true);
+    props.setUploadModalOn(true);
+    props.setModalOn(true);
   };
 
   return (
     <>
       <section
-        className={`search-result ${params.modalOn === true ? "modal-on" : ""}
+        className={`search-result ${props.modalOn === true ? "modal-on" : ""}
           `}
       >
         <div className="search-result-company-content">
           <div className="search-result-main-info">
-            <h2>{params.companyAlias}</h2>
-            <h3>{params.companyName}</h3>
-            <h3>{params.cnpjNumber}</h3>
+            <h2>{props.companyAlias}</h2>
+            <h3>{props.companyName}</h3>
+            <h3>{props.cnpjNumber}</h3>
             <div>
               <Button
                 className="btn-warning"
@@ -41,8 +41,8 @@ function SearchResult(params) {
               >
                 excluir empresa
               </Button>
-              {params.contractUrl > "" ? (
-                <a href={params.contractUrl}>
+              {props.contractUrl > "" ? (
+                <a href={props.contractUrl}>
                   <Button className="btn-contract">baixar contrato</Button>
                 </a>
               ) : (
@@ -55,22 +55,22 @@ function SearchResult(params) {
               Data de abertura<span>00/00/0000</span>
             </p> */}
             <p>
-              <span>{params.companyCity}</span>
-              <span>{params.companyState}</span>
+              <span>{props.companyCity}</span>
+              <span>{props.companyState}</span>
             </p>
             <p>
-              Porte<span>{params.companySize}</span>
+              Porte<span>{props.companySize}</span>
             </p>
             <p>
-              Cód.Nat. Jurídica<span>{params.companyLegalNature}</span>
+              Cód.Nat. Jurídica<span>{props.companyLegalNature}</span>
             </p>
           </div>
           <div className="search-result-payment-info">
             <p className="payment-date">
               Data do pagamento
-              {params.paymentDate ? (
+              {props.paymentDate ? (
                 <p>
-                  <span>{params.paymentDate}</span>
+                  <span>{props.paymentDate}</span>
                 </p>
               ) : (
                 <span>-</span>
@@ -78,9 +78,9 @@ function SearchResult(params) {
             </p>
             <p className="payment-method">
               Método de pagamento
-              {params.paymentMethod ? (
+              {props.paymentMethod ? (
                 <p>
-                  <span>{params.paymentMethod}</span>
+                  <span>{props.paymentMethod}</span>
                 </p>
               ) : (
                 <span>-</span>
@@ -88,8 +88,8 @@ function SearchResult(params) {
             </p>
             <p>
               Valor pago
-              {params.paymentValue > 0 ? (
-                <span>R$ {params.paymentValue},00</span>
+              {props.paymentValue > 0 ? (
+                <span>R$ {props.paymentValue},00</span>
               ) : (
                 <span>N/A</span>
               )}
@@ -104,7 +104,7 @@ function SearchResult(params) {
             </p>
             <Button className="btn-atention">retornar step</Button>
             <Button
-              className={`upload-btn ${params.searchOn === true ? "hide" : ""}`}
+              className={`upload-btn ${props.searchOn === true ? "hide" : ""}`}
               onClick={openUploadModal}
             >
               <p>
@@ -114,7 +114,7 @@ function SearchResult(params) {
           </div>
         </div>
         <p className="members-qty">
-          Número de membros: {params.membersArray.length}
+          Número de membros: {props.membersArray.length}
         </p>
         <div className="search-result-beneficiaries-content">
           <table>
@@ -131,8 +131,8 @@ function SearchResult(params) {
               </tr>
             </thead>
             <tbody>
-              {params.membersArray
-                ? params.membersArray.map((member) => {
+              {props.membersArray
+                ? props.membersArray.map((member) => {
                     return (
                       <tr>
                         <td>{member.profile}</td>

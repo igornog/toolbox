@@ -8,9 +8,9 @@ import Button from "../atoms/button";
 import EditModal from "../components/modals/EditModal";
 import UploadModal from "../components/modals/UploadModal";
 import DeleteConfirmationModal from "../components/modals/DeleteConfirmationModal";
-import ListCompaniesService from "../services/listCompanies";
-import ListMembersService from "../services/listMembers";
 import EditPaymentInfoModal from "../components/modals/EditPaymentInfoModal";
+import CompaniesServices from "../services/companies";
+import MembersServices from "../services/members";
 
 function Home() {
   const [inputMask, setInputMask] = useState("99.999.999/9999-99");
@@ -27,7 +27,8 @@ function Home() {
   const [companyName, setCompanyName] = useState(false);
   const [companyAlias, setCompanyAlias] = useState(false);
   const [cnpjNumber, setCnpjNumber] = useState(false);
-  // const [companyId, setCompanyId] = useState(false);
+  const [companyId, setCompanyId] = useState(false);
+  // const [hirerId, setHirerId] = useState(false);
   const [companyCity, setCompanyCity] = useState(false);
   const [companyState, setCompanyState] = useState(false);
   const [companySize, setCompanySize] = useState(false);
@@ -58,23 +59,23 @@ function Home() {
   };
 
   const searchCompany = () => {
-    ListCompaniesService.listAllCompanies(cnpjRawNumber)
+    CompaniesServices.listAllCompanies(cnpjRawNumber)
       .then(async (data) => {
         if (
-          data.data.data.companies.length === 0 ||
+          data.data.status === 200 ||
           cnpjRawNumber.length !== 14
         ) {
           setCnpjNotFound(true);
           setSearchOn(false);
-        } else if (cnpjRawNumber.length === 14) {
+        } else {
           setCnpjNotFound(false);
           setSearchOn(true);
           console.log(data);
           const companyId = data.data.data.companies[0].companyId;
           const companyResponse = companyId
             ? await Promise.all([
-                ListCompaniesService.checkCNPJ(companyId),
-                ListMembersService.getMembers(companyId),
+                CompaniesServices.checkCNPJ(companyId),
+                MembersServices.getMembers(companyId),
               ])
             : false;
 
@@ -201,10 +202,7 @@ function Home() {
             uploadModalOn === true ? "upload-modal-on" : ""
           }`}
         >
-          <UploadModal
-            setUploadModalOn={setUploadModalOn}
-            setModalOn={setModalOn}
-          />
+          <UploadModal companyId={companyId} setUploadModalOn={setUploadModalOn} setModalOn={setModalOn}/>
         </div>
         <div
           className={`edit-payment-info-modal ${
