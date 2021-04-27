@@ -1,96 +1,95 @@
-import React from "react";
-
-import useState from '../hooks/useState'
+import React, { useState, useMemo } from "react";
 
 import Button from "../atoms/button";
 import "./uploadModal.scss";
 import MembersServices from "../services/members";
 
 const  UploadModal = (props) => {
-  const [ state, setState ] = useState({})
+  const [ state, setState ] = useState({
+    loading: {
+      upload: false,
+      download: false,
+    }
+  })
 
   const closeUploadModal = () => {
     props.setUploadModalOn(false);
   };
 
-  const fileData = () => {
-    if (state.doc) {
-      return (
-        <p className="upload-details">
-          Arquivo adicionado: {state.doc.name}
-        </p>
-      );
-    } else {
-      return (
-        <p className="upload-details no-file">
-          Nenhum arquivo adicionado
-        </p>
-      );
-    }
-  };
+  const fileData = useMemo(() => {
+      if (state.doc) {
+        return (
+          <label>
+            {state.doc.name}
+          </label>
+        );
+      }
+  }, [state.doc])
 
   const onFileChange = (event) => {
-    setState({ doc: event.target.files[0] });
+    setState(prevState => ({ 
+      ...prevState,
+      doc: event.target.files[0],
+      loading: {
+        ...prevState.loading,
+        upload: true
+      }
+    }));
+
     const data = new FormData();
     data.append("spreadsheet", event.target.files[0]);
-    const options = {
-      onUploadProgress: (progressEvent) => {
-        const { loaded, total } = progressEvent;
-        let percent = Math.floor((loaded * 100) / total);
-        
 
-        if (percent < 100) {
-          setState({ ...state, uploadPercentage: percent });
-        }
-      },
-    };
-    
     MembersServices.uploadMembersSpreadsheet(
       data,
       props.companyId,
-      options
     )
       .then((res) => {
         console.log(res)
-        setState({ ...state, uploadPercentage: 100 }, () => {
-          setTimeout(() => {
-            setState({
-              ...state,
-              uploadPercentage: 0,
-            });
-          }, 1000);
-        });
+        setState(prevState => ({ ...prevState, loading: {
+          ...prevState.loading,
+          upload: true
+        }}));
       })
       .catch((error) => {
-        console.error("error", error)
-      })
-      .finally(() => {
-        let companyId = props.companyId;
-        // if (companyId) {
-        //   props.fetchBeneficiaries(companyId)
-        // };
+        console.error("sheet upload error", error)
       })
   };
 
+  const handleDownloadSpreadsheet = () => {
+    setState(prevState => ({ ...prevState, loading: { ...prevState.loading, download: true } }))
+    MembersServices.downloadSpreadsheet()
+      .then(_ =>  setState(prevState => ({ ...prevState, loading: { ...prevState.loading, download: false } })))
+      .catch(err =>  {
+        console.log(err)
+        setState(prevState => ({ ...prevState, loading: { ...prevState.loading, download: false } }))
+      })
+  }
+
   return (
     <>
-      <div className="modal-background"></div>
+      <div className="modal-background"/>
       <section>
         <div>
           <span onClick={closeUploadModal}><p>X</p></span>
           <div className="content">
-            <Button>Baixar planilha</Button>
-            <Button onClick></Button>
-            <div className="input-wrap">
+            <Button
+              isLoading={state.loading.download}
+              disabled={state.loading.download}
+              onClick={handleDownloadSpreadsheet}
+            >
+              Baixar planilha
+            </Button>
+            <Button isLoading={state.loading.upload}>
               <input
                 type="file"
                 id="docUpload"
                 name="docUpload"
+                className="input-wrap"
                 onChange={onFileChange}
+                disabled={state.loading.upload}
               />
-              <label for="docUpload">Subir planilha</label>
-              {fileData()}
-            </div>
+              {fileData ||  <label for="docUpload">Subir planilha</label>}
+            </Button>
           </div>
         </div>
       </section>

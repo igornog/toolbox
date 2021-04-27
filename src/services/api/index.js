@@ -7,6 +7,15 @@ const request = axios.create({
 	}
 });
 
+const requestDownload = axios.create({
+  baseURL: `https://api.samisaude.com.br/v1/`,
+  responseType: 'arraybuffer',
+  headers: {
+    'Content-Disposition': "attachment; filename=template.xlsx",
+    'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  }
+});
+
 class HttpService {
   static get = url => {
     return request.get(url)
@@ -23,6 +32,16 @@ class HttpService {
   static delete = (url) => {
     return request.delete(url)
   }
+
+  static postFile = (url, data, options) => {
+    return request.post(url, data, options);
+  }
+
+  static getDownload = url => {
+    return requestDownload.get(url)
+  }
+
+
 }
 
 export default HttpService

@@ -57,21 +57,20 @@ function Home() {
   const searchCompany = () => {
     CompaniesServices.listAllCompanies(cnpjRawNumber)
       .then(async (data) => {
-        if (
-          data.data.data.companies.length === 0 ||
-          cnpjRawNumber.length !== 14
-        ) {
-          setCnpjNotFound(true);
-          setSearchOn(false);
-        } else if (cnpjRawNumber.length === 14) {
+        console.log(data)
+        if(data.status === 200) {
+          const company = data.data?.data?.companies[0]
           setCnpjNotFound(false);
           setSearchOn(true);
           console.log(data)
-          const companyId = data.data.data.companies[0].companyId
+          const companyId = company.companyId
           const companyResponse = companyId
             ? await CompaniesServices.checkCNPJ(companyId)
             : false;
           return companyResponse;
+        } else {
+          setCnpjNotFound(true);
+          setSearchOn(false);
         }
       })
       .then((companyResponse) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import './button.scss'
 
-const Button = ({ id = '', name = '', onClick = () => {}, children, className = '', type = '', disabled }) => {
+const Button = ({ isLoading = false, id = '', name = '', onClick = () => {}, children, className = '', type = '', disabled }) => {
   return (
     <button
       id={id}
@@ -11,7 +11,7 @@ const Button = ({ id = '', name = '', onClick = () => {}, children, className = 
       type={type}
       disabled={disabled}
     >
-      {children}
+      {isLoading ? <label for={name}>Aguarde...</label> : children}
     </button>
   )
 }
