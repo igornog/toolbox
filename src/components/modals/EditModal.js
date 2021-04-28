@@ -22,10 +22,12 @@ function EditModal(props) {
                   return (
                     <>
                       <header>
+                        <p>Editando o membro</p>
                         <p>
-                          Editando o membro 
+                          <strong>
+                            {member.name} ({member.memberId})
+                          </strong>
                         </p>
-                        <p><strong>{member.name} ({member.memberId})</strong></p>
                       </header>
                       <div className="member-info">
                         <p>Perfil</p>
@@ -38,13 +40,16 @@ function EditModal(props) {
                           <option value="employee">Funcionário</option>
                         </select>
                         <p>Carteirinha</p>
-                        <input value={`${member.memberId}`} />
+                        <input
+                          type="text"
+                          defaultValue={`${member.memberId}`}
+                        />
                         <p>Nome do membro</p>
-                        <input value={`${member.name}`} />
+                        <input type="text" defaultValue={`${member.name}`} />
                         <p>CPF</p>
-                        <input value={`${member.cpf}`} />
+                        <input type="text" defaultValue={`${member.cpf}`} />
                         <p>Email</p>
-                        <input value={`${member.email}`} />
+                        <input type="text" defaultValue={`${member.email}`} />
                         <p>Plano</p>
                         <select>
                           <option
