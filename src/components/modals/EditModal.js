@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../atoms/button";
 import "./editModal.scss";
 
 function EditModal(props) {
@@ -15,37 +16,60 @@ function EditModal(props) {
           <span className="close-btn" onClick={closeEditModal}>
             <p>X</p>
           </span>
-          <header>
-            <h3>Dados para edição</h3>
-            <p>{props.companyName}</p>
-            <p>{props.companyAlias}</p>
-            <p>{props.cnpjNumber}</p>
-          </header>
-          <div className="member-info">
-            {props.membersArray
-              ? props.membersArray.map((member) => {
-                  if (member.memberId === props.memberSelected) {
-                    return (
-                      <>
-                        <td>{member.profile}</td>
-                        <td>{member.memberId}</td>
-                        <td>{member.name}</td>
-                        <td>{member.cpf}</td>
-                        <td>{member.email}</td>
-                        <td>
-                          {
-                            (member.planId = "5f202a77cb10ce002aa52fc0"
-                              ? "Enfermaria"
-                              : "Apartamento")
-                          }
-                        </td>
-                        <td>{member.birthDate}</td>
-                      </>
-                    );
-                  }
-                })
-              : ""}
-          </div>
+          {props.membersArray
+            ? props.membersArray.map((member) => {
+                if (member.memberId === props.memberSelected) {
+                  return (
+                    <>
+                      <header>
+                        <p>
+                          Editando o membro 
+                        </p>
+                        <p><strong>{member.name} ({member.memberId})</strong></p>
+                      </header>
+                      <div className="member-info">
+                        <p>Perfil</p>
+                        <select>
+                          <option selected="selected" disabled="disabled">
+                            {member.profile}
+                          </option>
+                          <option value="partner">Sócio</option>
+                          <option value="dependent">Dependente</option>
+                          <option value="employee">Funcionário</option>
+                        </select>
+                        <p>Carteirinha</p>
+                        <input value={`${member.memberId}`} />
+                        <p>Nome do membro</p>
+                        <input value={`${member.name}`} />
+                        <p>CPF</p>
+                        <input value={`${member.cpf}`} />
+                        <p>Email</p>
+                        <input value={`${member.email}`} />
+                        <p>Plano</p>
+                        <select>
+                          <option
+                            selected="selected"
+                            disabled="disabled"
+                            value={`${
+                              member.planId === "5f202a77cb10ce002aa52fc0"
+                                ? "Enfermaria"
+                                : "Apartamento"
+                            }`}
+                          >
+                            {member.planId}
+                          </option>
+                          <option value="enfermaria">Enfermaria</option>
+                          <option value="apartmento">Apartamento</option>
+                        </select>
+                        <p>Data de nascimento</p>
+                        <input type="date" value={`${member.birthDate}`} />
+                      </div>
+                      <Button>confirmar</Button>
+                    </>
+                  );
+                }
+              })
+            : ""}
         </section>
       </main>
     </>

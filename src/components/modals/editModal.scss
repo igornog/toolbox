@@ -17,12 +17,17 @@
       background-color: #fff;
       color: #000;
       z-index: 9;
-      width: 95vw;
+      width: 50vw;
       height: 95vh;
       top: 0;
       border-radius: 4px;
       section {
-        padding: 30px;
+        padding: 15px 30px;
+        height: -webkit-fill-available;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
         .close-btn {
           position: absolute;
           color: #fff;
@@ -37,7 +42,11 @@
           }
         }
         header {
-          h3, p {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          h3,
+          p {
             margin: 0;
           }
           h3 {
@@ -45,8 +54,30 @@
           }
         }
         .member-info {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin: 0;
+          height: auto;
+          input,
+          select {
+            padding: 7px;
+            border-radius: 7px;
+            margin: 0;
+            border: 1px solid #000;
+            overflow: initial;
+          }
           p {
-            margin: 7px 0;
+            margin: 12px 0 4px;
+            font-size: 18px;
+          }
+          button {
+            position: relative;
+            bottom: 0;
+            margin: 15px 0 0 0;
+            height: 35px;
+            width: 20%;
+            padding: 0;
           }
         }
       }
