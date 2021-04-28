@@ -62,7 +62,7 @@ function Home() {
     CompaniesServices.listAllCompanies(cnpjRawNumber)
       .then(async (data) => {
         if (
-          data.data.status === 200 ||
+          data.data.data.companies.length === 0 ||
           cnpjRawNumber.length !== 14
         ) {
           setCnpjNotFound(true);
