@@ -38,6 +38,7 @@ function Home() {
   const [paymentValue, setPaymentValue] = useState(false);
   const [contractUrl, setContractUrl] = useState(false);
   const [membersArray, setMembersArray] = useState(false);
+  const [memberSelected, setMemberSelected] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -183,6 +184,8 @@ function Home() {
             paymentDate={paymentDate}
             paymentMethod={paymentMethod}
             paymentValue={paymentValue}
+            membersArray={membersArray}
+            memberSelected={memberSelected}
           />
         </div>
         <div
@@ -202,7 +205,11 @@ function Home() {
             uploadModalOn === true ? "upload-modal-on" : ""
           }`}
         >
-          <UploadModal companyId={companyId} setUploadModalOn={setUploadModalOn} setModalOn={setModalOn}/>
+          <UploadModal
+            companyId={companyId}
+            setUploadModalOn={setUploadModalOn}
+            setModalOn={setModalOn}
+          />
         </div>
         <div
           className={`edit-payment-info-modal ${
@@ -224,6 +231,7 @@ function Home() {
           setsearchOn={setSearchOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
           setEditPaymentInfoModalOn={setEditPaymentInfoModalOn}
+          setMemberSelected={setMemberSelected}
           modalOn={modalOn}
           uploadModalOn={uploadModalOn}
           editModalOn={editModalOn}
@@ -242,6 +250,7 @@ function Home() {
           paymentValue={paymentValue}
           contractUrl={contractUrl}
           membersArray={membersArray}
+          memberSelected={memberSelected}
         />
       </section>
     </>
