@@ -34,8 +34,7 @@ class HttpService {
   }
 
   static postFile = (url, data, options = {}) => {
-    console.log(url, data, options)
-    return request.post(url, data);
+    return request.post(url, data, options);
   }
 
   static getDownload = url => {
