@@ -1,10 +1,9 @@
 import React from "react";
 import "./deleteConfirmationModal.scss";
-import Button from "../../atoms/button"
+import Button from "../../atoms/button";
 import CompaniesServices from "../../services/companies";
 
 function DeleteCompanyConfirmationModal(props) {
-  console.log('props=>>>', props);
 
   const closeConfirmationModal = () => {
     props.setDeleteCompanyConfirmationModalOn(false);
@@ -14,11 +13,11 @@ function DeleteCompanyConfirmationModal(props) {
   const confirmationModal = () => {
     // chama api
     // CompaniesServices.deleteCompanies(props.companyResponsableId)
-    
-    alert('esperando endpoint company...');
+
+    alert("esperando endpoint company...");
     props.setDeleteCompanyConfirmationModalOn(false);
     props.setModalOn(false);
-  }
+  };
 
   return (
     <>
@@ -30,10 +29,11 @@ function DeleteCompanyConfirmationModal(props) {
           </span>
           <div className="content">
             <p>
-              Os dados da empresa <strong>{props.companyName}</strong> serão apagados diretamente no DW.
+              Os dados da empresa <strong>{props.companyName}</strong> serão
+              apagados diretamente no DW.
             </p>
             <p>Você tem certeza que quer continuar?</p>
-          <div>
+            <div>
               <Button onClick={confirmationModal}>Sim, quero deletar</Button>
               <Button onClick={closeConfirmationModal}>Não</Button>
             </div>

@@ -3,7 +3,6 @@ import Button from "../atoms/button";
 import "./SearchResult.scss";
 
 function SearchResult(props) {
-  console.log('ahh', props);
   const openEditModal = (e) => {
     props.setMemberSelected(e.target.id);
     props.setEditModalOn(true);
@@ -157,8 +156,15 @@ function SearchResult(props) {
                         </td>
                         <td>{member.birthDate}</td>
                         <td>
-                          <p id={`${member.memberId}`} onClick={openEditModal}>editar</p>
-                          <p id={`${member.memberId}`} onClick={openDeleteConfirmationModal}>apagar</p>
+                          <p id={`${member.memberId}`} onClick={openEditModal}>
+                            editar
+                          </p>
+                          <p
+                            id={`${member.memberId}`}
+                            onClick={openDeleteConfirmationModal}
+                          >
+                            apagar
+                          </p>
                         </td>
                       </tr>
                     );
