@@ -1,14 +1,14 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: `https://api-dev.samisaude.com.br/v1/`,
+  baseURL: process.env.REACT_APP_API_ENDPOINT,
   headers: {
-    'api-token': `1ff41e89d825c9665cba01254f71b2a7`
+    'api-token': process.env.REACT_APP_API_TOKEN
 	}
 });
 
 const requestDownload = axios.create({
-  baseURL: `https://api-dev.samisaude.com.br/v1/`,
+  baseURL: process.env.REACT_APP_API_ENDPOINT,
   responseType: 'arraybuffer',
   headers: {
     'Content-Disposition': "attachment; filename=template.xlsx",
