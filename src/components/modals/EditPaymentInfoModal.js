@@ -33,6 +33,7 @@ function EditPaymentInfoModal(props) {
                 <p>
                   Método de pagamento:
                   <select>
+                    <option selected="true" disabled="disabled">Selecionar</option>
                     <option>Cartão de Crédito</option>
                     <option>Boleto</option>
                   </select>
