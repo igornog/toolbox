@@ -9,7 +9,8 @@ function SearchResult(props) {
     props.setModalOn(true);
   };
 
-  const openDeleteConfirmationModal = () => {
+  const openDeleteConfirmationModal = (e) => {
+    props.setMemberSelected(e.target.id);
     props.setDeleteConfirmationModalOn(true);
     props.setModalOn(true);
   };
@@ -151,7 +152,7 @@ function SearchResult(props) {
                         <td>{member.birthDate}</td>
                         <td>
                           <p id={`${member.memberId}`} onClick={openEditModal}>editar</p>
-                          <p onClick={openDeleteConfirmationModal}>apagar</p>
+                          <p id={`${member.memberId}`} onClick={openDeleteConfirmationModal}>apagar</p>
                         </td>
                       </tr>
                     );

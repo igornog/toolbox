@@ -198,6 +198,8 @@ function Home() {
           <DeleteConfirmationModal
             setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
             setModalOn={setModalOn}
+            memberSelected={memberSelected}
+            membersArray={membersArray}
           />
         </div>
         <div
