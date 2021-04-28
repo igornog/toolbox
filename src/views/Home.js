@@ -8,6 +8,7 @@ import Button from "../atoms/button";
 import EditModal from "../components/modals/EditModal";
 import UploadModal from "../components/modals/UploadModal";
 import DeleteConfirmationModal from "../components/modals/DeleteConfirmationModal";
+import DeleteCompanyConfirmationModal from "../components/modals/DeleteCompanyConfirmationModal";
 import EditPaymentInfoModal from "../components/modals/EditPaymentInfoModal";
 import CompaniesServices from "../services/companies";
 import MembersServices from "../services/members";
@@ -19,6 +20,9 @@ function Home() {
   const [uploadModalOn, setUploadModalOn] = useState(false);
   const [editModalOn, setEditModalOn] = useState(false);
   const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(
+    false
+  );
+  const [deleteCompanyConfirmationModalOn, setDeleteCompanyConfirmationModalOn] = useState(
     false
   );
   const [editPaymentInfoModal, setEditPaymentInfoModalOn] = useState(false);
@@ -211,6 +215,20 @@ function Home() {
           />
         </div>
         <div
+          className={`delete-confirmation-modal ${
+            deleteCompanyConfirmationModalOn === true
+              ? "delete-confirmation-modal-on"
+              : ""
+          }`}
+        >
+          <DeleteCompanyConfirmationModal
+            setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
+            setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
+            companyName={companyName}
+          />
+        </div>
+        <div
           className={`upload-modal ${
             uploadModalOn === true ? "upload-modal-on" : ""
           }`}
@@ -240,12 +258,14 @@ function Home() {
           setUploadModalOn={setUploadModalOn}
           setsearchOn={setSearchOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
+          setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
           setEditPaymentInfoModalOn={setEditPaymentInfoModalOn}
           setMemberSelected={setMemberSelected}
           modalOn={modalOn}
           uploadModalOn={uploadModalOn}
           editModalOn={editModalOn}
           deleteConfirmationModalOn={deleteConfirmationModalOn}
+          deleteCompanyConfirmationModalOn={deleteCompanyConfirmationModalOn}
           deleteModalOn={editModalOn}
           editPaymentInfoModal={editPaymentInfoModal}
           companyName={companyName}

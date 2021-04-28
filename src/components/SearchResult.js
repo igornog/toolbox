@@ -3,6 +3,7 @@ import Button from "../atoms/button";
 import "./SearchResult.scss";
 
 function SearchResult(props) {
+  console.log('ahh', props);
   const openEditModal = (e) => {
     props.setMemberSelected(e.target.id);
     props.setEditModalOn(true);
@@ -12,6 +13,11 @@ function SearchResult(props) {
   const openDeleteConfirmationModal = (e) => {
     props.setMemberSelected(e.target.id);
     props.setDeleteConfirmationModalOn(true);
+    props.setModalOn(true);
+  };
+
+  const openDeleteCompanyConfirmationModal = (e) => {
+    props.setDeleteCompanyConfirmationModalOn(true);
     props.setModalOn(true);
   };
 
@@ -39,7 +45,7 @@ function SearchResult(props) {
             <div>
               <Button
                 className="btn-warning"
-                onClick={openDeleteConfirmationModal}
+                onClick={openDeleteCompanyConfirmationModal}
               >
                 excluir empresa
               </Button>
