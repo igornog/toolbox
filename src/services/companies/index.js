@@ -5,11 +5,18 @@ class CompaniesServices {
     api.get(
       `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
         cpnjNumber +
-        `&limit=1`
+        `&limit=10`
     );
 
   static checkCNPJ = (companyId) =>
     api.get("hiring/backoffice/company/" + companyId);
+
+  // static deleteCompanies = (cpnjNumber) =>
+  //   api.delete(
+  //     `hiring/backoffice/company/listWithOpenDocuments?filterString=` +
+  //       cpnjNumber +
+  //       `&limit=1`
+  //   );
 }
 
 export default CompaniesServices;
