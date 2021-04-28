@@ -8,6 +8,7 @@ import Button from "../atoms/button";
 import EditModal from "../components/modals/EditModal";
 import UploadModal from "../components/modals/UploadModal";
 import DeleteConfirmationModal from "../components/modals/DeleteConfirmationModal";
+import DeleteCompanyConfirmationModal from "../components/modals/DeleteCompanyConfirmationModal";
 import EditPaymentInfoModal from "../components/modals/EditPaymentInfoModal";
 import CompaniesServices from "../services/companies";
 import MembersServices from "../services/members";
@@ -19,6 +20,9 @@ function Home() {
   const [uploadModalOn, setUploadModalOn] = useState(false);
   const [editModalOn, setEditModalOn] = useState(false);
   const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(
+    false
+  );
+  const [deleteCompanyConfirmationModalOn, setDeleteCompanyConfirmationModalOn] = useState(
     false
   );
   const [editPaymentInfoModal, setEditPaymentInfoModalOn] = useState(false);
@@ -38,6 +42,9 @@ function Home() {
   const [paymentValue, setPaymentValue] = useState(false);
   const [contractUrl, setContractUrl] = useState(false);
   const [membersArray, setMembersArray] = useState(false);
+  const [companyResponsableId, setCompanyResponsableId] = useState("");
+  const [companyList, setCompanyList] = useState("");
+  const [memberSelected, setMemberSelected] = useState(false);
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -71,7 +78,12 @@ function Home() {
           setCnpjNotFound(false);
           setSearchOn(true);
           console.log(data);
+
+          const allCompaniesList = data.data.data.companies
+          setCompanyList(allCompaniesList)
+
           const companyId = data.data.data.companies[0].companyId;
+          setCompanyResponsableId(companyId);
           const companyResponse = companyId
             ? await Promise.all([
                 CompaniesServices.checkCNPJ(companyId),
@@ -183,6 +195,8 @@ function Home() {
             paymentDate={paymentDate}
             paymentMethod={paymentMethod}
             paymentValue={paymentValue}
+            membersArray={membersArray}
+            memberSelected={memberSelected}
           />
         </div>
         <div
@@ -195,6 +209,23 @@ function Home() {
           <DeleteConfirmationModal
             setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
             setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
+            memberSelected={memberSelected}
+            membersArray={membersArray}
+          />
+        </div>
+        <div
+          className={`delete-confirmation-modal ${
+            deleteCompanyConfirmationModalOn === true
+              ? "delete-confirmation-modal-on"
+              : ""
+          }`}
+        >
+          <DeleteCompanyConfirmationModal
+            setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
+            setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
+            companyName={companyName}
           />
         </div>
         <div
@@ -202,7 +233,11 @@ function Home() {
             uploadModalOn === true ? "upload-modal-on" : ""
           }`}
         >
-          <UploadModal companyId={companyId} setUploadModalOn={setUploadModalOn} setModalOn={setModalOn}/>
+          <UploadModal
+            companyId={companyId}
+            setUploadModalOn={setUploadModalOn}
+            setModalOn={setModalOn}
+          />
         </div>
         <div
           className={`edit-payment-info-modal ${
@@ -223,11 +258,14 @@ function Home() {
           setUploadModalOn={setUploadModalOn}
           setsearchOn={setSearchOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
+          setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
           setEditPaymentInfoModalOn={setEditPaymentInfoModalOn}
+          setMemberSelected={setMemberSelected}
           modalOn={modalOn}
           uploadModalOn={uploadModalOn}
           editModalOn={editModalOn}
           deleteConfirmationModalOn={deleteConfirmationModalOn}
+          deleteCompanyConfirmationModalOn={deleteCompanyConfirmationModalOn}
           deleteModalOn={editModalOn}
           editPaymentInfoModal={editPaymentInfoModal}
           companyName={companyName}
@@ -242,6 +280,8 @@ function Home() {
           paymentValue={paymentValue}
           contractUrl={contractUrl}
           membersArray={membersArray}
+          companyList={companyList}
+          memberSelected={memberSelected}
         />
       </section>
     </>
