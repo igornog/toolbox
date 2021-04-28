@@ -38,6 +38,8 @@ function Home() {
   const [paymentValue, setPaymentValue] = useState(false);
   const [contractUrl, setContractUrl] = useState(false);
   const [membersArray, setMembersArray] = useState(false);
+  const [companyResponsableId, setCompanyResponsableId] = useState("");
+  const [companyList, setCompanyList] = useState("");
 
   const changeMask = (e) => {
     let docChoosen = e.target.value;
@@ -71,7 +73,12 @@ function Home() {
           setCnpjNotFound(false);
           setSearchOn(true);
           console.log(data);
+
+          const allCompaniesList = data.data.data.companies
+          setCompanyList(allCompaniesList)
+
           const companyId = data.data.data.companies[0].companyId;
+          setCompanyResponsableId(companyId);
           const companyResponse = companyId
             ? await Promise.all([
                 CompaniesServices.checkCNPJ(companyId),
@@ -195,6 +202,7 @@ function Home() {
           <DeleteConfirmationModal
             setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
             setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
           />
         </div>
         <div
@@ -242,6 +250,7 @@ function Home() {
           paymentValue={paymentValue}
           contractUrl={contractUrl}
           membersArray={membersArray}
+          companyList={companyList}
         />
       </section>
     </>
