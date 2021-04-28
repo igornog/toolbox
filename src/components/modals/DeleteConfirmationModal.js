@@ -17,24 +17,24 @@ function DeleteConfirmationModal(props) {
             <p>X</p>
           </span>
           <div className="content">
-              {props.membersArray
-                ? props.membersArray.map((member) => {
-                    if (member.memberId === props.memberSelected) {
-                      return (
-                        <>
-                          <p>
-                            Os dados do membro{" "}
-                            <strong>
-                              {member.name} ({props.memberSelected}
-                            </strong>
-                            ) serão apagados diretamente no DW.
-                            <br /> Você tem certeza que quer continuar?
-                          </p>
-                        </>
-                      );
-                    }
-                  })
-                : ""}
+            {props.membersArray
+              ? props.membersArray.map((member) => {
+                  if (member.memberId === props.memberSelected) {
+                    return (
+                      <>
+                        <p>
+                          Os dados do membro{" "}
+                          <strong>
+                            {member.name} ({props.memberSelected}
+                          </strong>
+                          ) serão apagados diretamente no DW.
+                        </p>{" "}
+                        <p>Você tem certeza que quer continuar?</p>
+                      </>
+                    );
+                  }
+                })
+              : ""}
             <div>
               <Button onClick={closeConfirmationModal}>
                 Sim, quero deletar
