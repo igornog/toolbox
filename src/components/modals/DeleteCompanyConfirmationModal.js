@@ -4,7 +4,6 @@ import Button from "../../atoms/button";
 import CompaniesServices from "../../services/companies";
 
 function DeleteCompanyConfirmationModal(props) {
-  console.log("props=>>>", props);
 
   const closeConfirmationModal = () => {
     props.setDeleteCompanyConfirmationModalOn(false);
