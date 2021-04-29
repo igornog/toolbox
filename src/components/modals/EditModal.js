@@ -50,6 +50,8 @@ function EditModal(props) {
                         <input type="text" defaultValue={`${member.cpf}`} />
                         <p>Email</p>
                         <input type="text" defaultValue={`${member.email}`} />
+                        <p>Telefone</p>
+                        <input type="text" defaultValue={`${member.phoneNumber}`} />
                         <p>Plano</p>
                         <select>
                           <option

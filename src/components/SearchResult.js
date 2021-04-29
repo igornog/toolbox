@@ -133,6 +133,7 @@ function SearchResult(props) {
                 <th>nome</th>
                 <th>cpf</th>
                 <th>email</th>
+                <th>telefone</th>
                 <th>plano</th>
                 <th>data de nascimento</th>
                 <th>ações</th>
@@ -148,6 +149,7 @@ function SearchResult(props) {
                         <td>{member.name}</td>
                         <td>{member.cpf}</td>
                         <td>{member.email}</td>
+                        <td>{member.phoneNumber}</td>
                         <td>
                           {
                             (member.planId = "5f202a77cb10ce002aa52fc0"
