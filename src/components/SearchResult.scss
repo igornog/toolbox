@@ -66,7 +66,6 @@
     td {
         height: 100px;
         text-align: center;
-        width: 150px;
         p {
             cursor: pointer;
             &:hover {
@@ -126,9 +125,6 @@
       margin: 0;
       text-transform: uppercase;
       background-color: lightseagreen;
-      @media only screen and (max-width: 1024px) {
-        height: 115px;
-      }
     }
   }
   .members-qty {
