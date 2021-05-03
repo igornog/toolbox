@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./updateContractModal.scss";
 import Button from "../../atoms/button";
 import InputMask from "react-input-mask";
-
+import CompaniesServices from "../../services/companies"
 
 function UpdateContractModal(props) {
   console.log('update', props);
@@ -21,8 +21,21 @@ function UpdateContractModal(props) {
     }
   };
 
-  const updateSend = (cnpjRawNumber) => {
-    alert('lol')
+  const updateSend = () => {
+    const dataPayload = {
+      "data-raw": {
+        "companies": [
+          cnpjRawNumber
+        ]
+      }
+    }
+    console.log('cnpj', cnpjRawNumber)
+    CompaniesServices.updateContract(cnpjRawNumber)
+    .then( (data) => {
+      console.log('data', data)
+      props.setUpdateContractModalOn(false);
+      props.setModalOn(false);
+    })
   }
 
   return (
