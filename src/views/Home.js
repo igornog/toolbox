@@ -10,6 +10,7 @@ import UploadModal from "../components/modals/UploadModal";
 import DeleteConfirmationModal from "../components/modals/DeleteConfirmationModal";
 import DeleteCompanyConfirmationModal from "../components/modals/DeleteCompanyConfirmationModal";
 import EditPaymentInfoModal from "../components/modals/EditPaymentInfoModal";
+import UpdateContractModal from "../components/modals/UpdateContractModal";
 import CompaniesServices from "../services/companies";
 import MembersServices from "../services/members";
 
@@ -25,6 +26,7 @@ function Home() {
   const [deleteCompanyConfirmationModalOn, setDeleteCompanyConfirmationModalOn] = useState(
     false
   );
+  const [updateContractModalOn, setUpdateContractModalOn] = useState(false);
   const [editPaymentInfoModal, setEditPaymentInfoModalOn] = useState(false);
   const [cnpjNotFound, setCnpjNotFound] = useState(false);
   const [cnpjRawNumber, setCnpjRawNumber] = useState(false);
@@ -146,7 +148,8 @@ function Home() {
       <section
         className={`home-section ${searchOn === true ? "search-on" : ""}`}
       >
-        <NavBar setsearchOn={setSearchOn} setUploadModalOn={setUploadModalOn} />
+        <NavBar setsearchOn={setSearchOn} setUploadModalOn={setUploadModalOn} setUpdateContractModalOn={setUpdateContractModalOn} setModalOn={setModalOn}
+/>
         <div className="search-box">
           <h2 onClick={() => setSearchOn(false)}>
             Hiring Toolbox{" "}
@@ -225,6 +228,21 @@ function Home() {
             setModalOn={setModalOn}
             companyResponsableId={companyResponsableId}
             companyName={companyName}
+          />
+        </div>
+        <div
+          className={`update-contract-modal ${
+            updateContractModalOn === true
+              ? "update-contract-modal-on"
+              : ""
+          }`}
+        >
+          <UpdateContractModal
+            setUpdateContractModalOn={setUpdateContractModalOn}
+            setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
+            companyName={companyName}
+            cnpjNumber={cnpjNumber}
           />
         </div>
         <div

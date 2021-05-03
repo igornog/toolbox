@@ -1,0 +1,198 @@
+.update-contract-modal {
+  .search-box {
+    .data{
+      margin: 30px 0;
+    }
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: calc(100% - 600px);
+    z-index: 9;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+      height: auto;
+    }
+    h2 {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      cursor: pointer;
+      @media only screen and (max-width: 1024px) {
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+            -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse;
+        text-align: center;
+      }
+      span {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        margin: 0 15px;
+        img {
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+    input,
+    select {
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      height: 50px;
+      padding: 0;
+      margin: 0px 7px;
+      @media only screen and (max-width: 1024px) {
+        height: 40px;
+      }
+    }
+    input {
+      padding: 0 10px;
+      width: 50%;
+      font-size: 30px;
+      background: #e2e2e2;
+      @media only screen and (max-width: 1024px) {
+        margin: 15px 0 10px;
+        width: 80%;
+      }
+      @media only screen and (max-width: 500px) {
+        font-size: 20px;
+      }
+    }
+    select {
+      background-color: #fff;
+      padding: 0 15px;
+      font-size: 15px;
+    }
+    div {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      width: 100%;
+      @media only screen and (max-width: 1024px) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        width: 75%;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+      }
+    }
+    .upload-btn {
+      bottom: 0;
+      position: absolute;
+      margin-bottom: 30px;
+      width: 25%;
+      &.hide{
+        display: none;
+      }
+      @media only screen and (max-width: 1024px) {
+        width: 75%;
+      }
+    }
+    .cnpj-not-found {
+      display: none;
+      text-align: center;
+      &.show {
+        display: block;
+      }
+      p {
+        margin: 7px 0 0 0;
+        font-size: 18px;
+      }
+    }
+  }
+  display: none;
+  &-on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    z-index: 999;
+    .modal-background {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      background-color: #282c34;
+    }
+    section {
+      background-color: #fff;
+      width: 70vw;
+      z-index: 9;
+      height: 50vh;
+      top: 0;
+      border-radius: 4px;
+        .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #000;
+        h3 {
+          margin: 0;
+        }
+        div {
+          width: 100%;
+          height: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        p {
+          margin: 0;
+          text-align: center;
+          color: #000;
+          padding: 0 30px;
+          &:nth-of-type(2){
+            margin-top: 15px;
+          }
+        }
+        button {
+          width: 40%;
+          margin: 0 30px;
+          @media only screen and (max-width: 1024px) {
+            margin: 0 15px;
+          }
+        }
+      }
+      div {
+        position: relative;
+        height: 100%;
+        span {
+          position: absolute;
+          color: #fff;
+          z-index: 999;
+          cursor: pointer;
+          top: 0;
+          padding: 15px 25px 0 0;
+          right: 0;
+          p {
+            color: black;
+            font-size: 30px;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

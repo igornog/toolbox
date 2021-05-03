@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import menuIcon from "../assets/menuIcon.png";
 import LogoutBtn from "../atoms/LogoutBtn";
+import UpdateContractModal from "../components/modals/UpdateContractModal";
 
 function NavBar(props) {
+  console.log('navbar', props);
   const [MenuOpened, setMenuOpened] = useState(false);
   const [ProfileOpened, setProfileOpened] = useState(false);
+  // const [UpdateOpenedModal, setUpdateOpenedModal] = useState(false);
 
   const closeMenus = () => {
     setMenuOpened(false);
@@ -26,6 +29,11 @@ function NavBar(props) {
     closeMenus();
   };
 
+  const openUpdateModal = () => {
+    props.setModalOn(true);
+    props.setUpdateContractModalOn(true);
+  }
+
   return (
     <>
       <nav>
@@ -37,7 +45,7 @@ function NavBar(props) {
             <span onClick={closeMenus}>x</span>
             <ul>
               <li onClick={closeSearch}><p>home</p></li>  
-              <li><p>update forçado do DW para contrato</p></li>
+              <li onClick={openUpdateModal}><p>Atualizar contrato e coberturas</p></li>
               <li><p>histórico de modificações</p></li>
             </ul>
           </div>

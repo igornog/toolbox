@@ -38,6 +38,7 @@
         width: 40px;
       }
     }
+    .update-closed,
     .menu-closed,
     .profile-closed {
       opacity: 0;
@@ -56,6 +57,7 @@
         display: none;
       }
     }
+    .update-opened,
     .menu-opened,
     .profile-opened {
       width: 300px;
