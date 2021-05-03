@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import menuIcon from "../assets/menuIcon.png";
 import LogoutBtn from "../atoms/LogoutBtn";
+import PaymentsServices from "../services/payments"
 
 function NavBar(props) {
   const [MenuOpened, setMenuOpened] = useState(false);
@@ -26,6 +27,12 @@ function NavBar(props) {
     closeMenus();
   };
 
+  const activePlans = () => {
+    PaymentsServices.activatePlans().then((data)=> {
+      console.log(data)
+    })
+  }
+
   return (
     <>
       <nav>
@@ -37,6 +44,7 @@ function NavBar(props) {
             <span onClick={closeMenus}>x</span>
             <ul>
               <li onClick={closeSearch}><p>home</p></li>  
+              <li onClick={activePlans}><p>ativar planos</p></li>
               <li><p>update forçado do DW para contrato</p></li>
               <li><p>histórico de modificações</p></li>
             </ul>
