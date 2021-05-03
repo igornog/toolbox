@@ -28,9 +28,8 @@ function NavBar(props) {
   };
 
   const activePlans = () => {
-    PaymentsServices.activatePlans().then((data)=> {
-      console.log(data)
-    })
+    props.setConfirmationModalOn(true)
+    props.setModalOn(true)
   }
 
   return (

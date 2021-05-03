@@ -7,6 +7,7 @@ import SearchResult from "../components/SearchResult";
 import Button from "../atoms/button";
 import EditModal from "../components/modals/EditModal";
 import UploadModal from "../components/modals/UploadModal";
+import ConfirmationModal from "../components/modals/ConfirmationModal";
 import DeleteConfirmationModal from "../components/modals/DeleteConfirmationModal";
 import DeleteCompanyConfirmationModal from "../components/modals/DeleteCompanyConfirmationModal";
 import EditPaymentInfoModal from "../components/modals/EditPaymentInfoModal";
@@ -22,9 +23,11 @@ function Home() {
   const [deleteConfirmationModalOn, setDeleteConfirmationModalOn] = useState(
     false
   );
-  const [deleteCompanyConfirmationModalOn, setDeleteCompanyConfirmationModalOn] = useState(
-    false
-  );
+  const [confirmationModalOn, setConfirmationModalOn] = useState(false);
+  const [
+    deleteCompanyConfirmationModalOn,
+    setDeleteCompanyConfirmationModalOn,
+  ] = useState(false);
   const [editPaymentInfoModal, setEditPaymentInfoModalOn] = useState(false);
   const [cnpjNotFound, setCnpjNotFound] = useState(false);
   const [cnpjRawNumber, setCnpjRawNumber] = useState(false);
@@ -79,8 +82,8 @@ function Home() {
           setSearchOn(true);
           console.log(data);
 
-          const allCompaniesList = data.data.data.companies
-          setCompanyList(allCompaniesList)
+          const allCompaniesList = data.data.data.companies;
+          setCompanyList(allCompaniesList);
 
           const companyId = data.data.data.companies[0].companyId;
           setCompanyResponsableId(companyId);
@@ -146,7 +149,13 @@ function Home() {
       <section
         className={`home-section ${searchOn === true ? "search-on" : ""}`}
       >
-        <NavBar setsearchOn={setSearchOn} setUploadModalOn={setUploadModalOn} />
+        <NavBar
+          setsearchOn={setSearchOn}
+          setModalOn={setModalOn}
+          modalOn={modalOn}
+          setUploadModalOn={setUploadModalOn}
+          setConfirmationModalOn={setConfirmationModalOn}
+        />
         <div className="search-box">
           <h2 onClick={() => setSearchOn(false)}>
             Hiring Toolbox{" "}
@@ -214,6 +223,19 @@ function Home() {
           />
         </div>
         <div
+          className={`confirmation-modal ${
+            confirmationModalOn === true ? "confirmation-modal-on" : ""
+          }`}
+        >
+          <ConfirmationModal
+            setConfirmationModalOn={setConfirmationModalOn}
+            setModalOn={setModalOn}
+            companyResponsableId={companyResponsableId}
+            memberSelected={memberSelected}
+            membersArray={membersArray}
+          />
+        </div>
+        <div
           className={`delete-confirmation-modal ${
             deleteCompanyConfirmationModalOn === true
               ? "delete-confirmation-modal-on"
@@ -221,7 +243,9 @@ function Home() {
           }`}
         >
           <DeleteCompanyConfirmationModal
-            setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
+            setDeleteCompanyConfirmationModalOn={
+              setDeleteCompanyConfirmationModalOn
+            }
             setModalOn={setModalOn}
             companyResponsableId={companyResponsableId}
             companyName={companyName}
@@ -257,7 +281,9 @@ function Home() {
           setUploadModalOn={setUploadModalOn}
           setsearchOn={setSearchOn}
           setDeleteConfirmationModalOn={setDeleteConfirmationModalOn}
-          setDeleteCompanyConfirmationModalOn={setDeleteCompanyConfirmationModalOn}
+          setDeleteCompanyConfirmationModalOn={
+            setDeleteCompanyConfirmationModalOn
+          }
           setEditPaymentInfoModalOn={setEditPaymentInfoModalOn}
           setMemberSelected={setMemberSelected}
           modalOn={modalOn}
